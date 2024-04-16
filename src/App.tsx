@@ -1,10 +1,10 @@
 import './App.css';
-import Emailotp from './component/pages/Emailotp';
+import Signin from './component/pages/Signin';
 
 function App() {
 
   return (
-      <Emailotp />
+    <Signin/> 
   )
 }
 
