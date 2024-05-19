@@ -15,6 +15,7 @@ function App() {
 
 
   return (
+<<<<<<< HEAD
     <Router>
         <Routes>
                 <Route path="/" element={
