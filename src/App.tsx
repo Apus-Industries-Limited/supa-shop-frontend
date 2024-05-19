@@ -7,6 +7,7 @@ import Forgetpassword from './component/authentications/Forgetpassword';
 import Newpassword from './component/authentications/Newpassword';
 import Signin2 from './component/authentications/Signin2';
 import Lazysignup from './component/authentications/lazyauth/Lazysignup';
+import Lazyauth from './component/authentications/lazyauth/Lazyauth';
 
 
 
@@ -21,10 +22,29 @@ function App() {
                   <Signup/>
                 </Suspense>
                 }></Route>
+
                 <Route path="/Emailotp" element={<Emailotp/>}></Route>
-                <Route path="/Forgetpassword" element={<Forgetpassword/>}></Route>
-                <Route path="/Newpassword" element={<Newpassword/>}></Route>
-                <Route path="/Signin" element={<Signin2/>}></Route>
+
+
+                <Route path="/Forgetpassword" element={
+                 <Suspense fallback={<Lazyauth/>}>
+                  <Forgetpassword/>
+                  </Suspense>
+                }></Route>
+
+
+                <Route path="/Resetpassword" element={
+                  <Suspense fallback={<Lazyauth/>}>
+                    <Newpassword/>
+                  </Suspense>
+                }></Route>
+
+
+                <Route path="/Signin" element={
+                  <Suspense fallback={<Lazyauth/>}>
+                    <Signin2/>
+                    </Suspense>
+                }></Route>
         </Routes>
     </Router>
   )
