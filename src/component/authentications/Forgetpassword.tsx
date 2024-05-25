@@ -60,14 +60,14 @@ const Forgetpassword = () => {
                     <form action='POST'>
                         <span className=''>
                             <label className='text-[#1E1E1E] font-bold text-[14px]'>Email</label><br></br>
-                            <input type='text' placeholder=' johndoe@gmail.com' name='username'
+                            <input type='text' placeholder=' johndoe@gmail.com' name='email'
                             onChange={handleChange}
                             value={formData.email}
                             className=' border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[350px] lg:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/>
                         </span><br></br>
 
                         <label className='text-[#1E1E1E] font-bold text-[14px]'>Phone</label><br/>
-                        <input type='tel' name='password' placeholder=' +234 123 456 789'
+                        <input type='tel' name='phonenumber' placeholder=' +234 123 456 789'
                          maxLength={10}
                         onChange={handleChange}
                         value={formData.phonenumber}

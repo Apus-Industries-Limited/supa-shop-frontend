@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'
 
 
 const Newpassword: React.FC = () => {
@@ -28,12 +29,15 @@ const Newpassword: React.FC = () => {
                 const response = await axios.post(`${API_URL}/auth/reset-password`, { password }, {
                     headers: {
                         'Content-Type': 'application/json; charset=UTF-8'
-                    }
+                    },
+                    method: 'POST',
                 });
-                console.log(response.data);
+                if (response.status === 200){
+                    toast.success('Password Reset')
+                };
                 navigate('/Signin')// Redirect to signin page
             } catch (error:any) {
-                console.error(error.response.data); // Handle error
+                toast.error(error.response.data); // Handle error
                 setError('An error occurred. Please try again.');
             }
         };    
@@ -51,7 +55,7 @@ const Newpassword: React.FC = () => {
                     </span>
 
                     <div className='mt-5'>
-                    <form action='POST'>
+                    <form method='POST'>
                         <span className=''>
                             <label className='text-[#1E1E1E] font-bold text-[14px]'>New Password</label><br></br>
                             <input type='password' placeholder='**********' name='password' 

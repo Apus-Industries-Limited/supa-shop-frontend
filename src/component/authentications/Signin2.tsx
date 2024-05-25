@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import { SignInFormData } from './types/Formtypes';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'
 
 const Signin2 = () => {
 
@@ -31,21 +32,24 @@ const Signin2 = () => {
             const response = await axios.post(`${API_URL}/auth/login`, formData,  {
                 headers: {
                     'Content-Type': 'application/json; charset=UTF-8'
-                }
+                },
+                method: 'POST',
             });
-            console.log(response.data); // Handle success
-            navigate('/signin')
+            if (response.data.status === 200){
+                toast.success('Login SUccessful')
+            } // Handle success
+            navigate('/')
         } catch (error:any) {
-            throw(error.response.data); // Handle error
+            toast('Detail Not Match'); // Handle error
         }
     };
 
     return (
-         <div className='bg-[#FF7900] sm:w-full sm:h-[932px] lg:w-full lg:h-[1024px] flex font-["Mont"]  flex-col items-center' >
+         <div className='bg-[#FF7900] sm:w-full sm:h-[932px] md:h-[1024px] lg:w-full lg:h-[1024px] flex font-["Mont"]  flex-col items-center' >
             <span><h1 className='text-[#FFFFFF] text-[24px]  text-center font-black font-["Mont"] w-[83] h-[31] mt-9 md:block sm:hidden'>Sign In</h1><br/>
             <p  className='text-[#FFFFFF] md:text-[20px]  sm:text-[12px] font-black font-["Mont"] w-[136] h-[18] md:block sm:hidden'>Please Sign in first</p>
             </span>
-            <div className='sm:w-[300px] sm:h-[450px] lg:w-[1160px]  lg:h-[664px] bg-[#FFFFFF] m-[30px] flex-shrink-0 rounded-[32px] flex md:space-x-12 md:items-center p-[0px] sm:flex-col md:flex-row lg:flex-row  items-center'>
+            <div className='sm:w-[300px] sm:h-[450px] md:w-[720px] lg:w-[1160px]  lg:h-[664px] bg-[#FFFFFF] m-[30px] flex-shrink-0 rounded-[32px] flex md:space-x-12 md:items-center p-[0px] sm:flex-col md:flex-row lg:flex-row  items-center'>
            
             <div>
                 <span><h1 className='text-[#1C1B1B] text-[24px]  text-center font-black font-["Mont"] w-[83] h-[31] mt-9 sm:block md:hidden'>Sign In</h1><br/>
@@ -54,35 +58,35 @@ const Signin2 = () => {
             </div>
 
 
-            <img className="sm:hidden md:block w-[369px] h-[492px] rounded-[12px] p-[18px]" src={signimage}/>
+            <img className="sm:hidden md:block md:w-[250px] md:h-[290px] lg:w-[430px] lg:h-[505px] rounded-[12px] p-[18px]" src={signimage} alt='SupaShop-image'/>
                 <form action='POST'  className=' sm:pr-18 md:m-20'>
                     <span>
                         <label className='text-[#000000] text-[14px]'>Username<br/>
-                        <input type='text' placeholder='@johndoe' name='username'
+                        <input type='text' placeholder='@johndoe'
+                        name='username'
                         value={formData.username}
                         onChange={handleChange}
                         required
-                        className='sm:mb-5 sm:w-[250px] sm:h-[38px] focus:outline-none md:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
+                        className='sm:mb-5 sm:w-[250px] sm:h-[38px] focus:outline-none md:w-[300px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
                     </span><br></br>
                         <label className='text-[#000000] text-[18px] sm:mt-32 lg:mt-32'>Password<br/>
-                        <input type='password' name='password' placeholder='********' className='sm:mb-5 sm:w-[250px] sm:h-[38px] md:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label><br/>
+                        <input type='password' name='password' placeholder='********' className='sm:mb-5 sm:w-[250px] sm:h-[38px] md:w-[300px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label><br/>
                         <input type='checkbox' 
                          value={formData.password}
                          onChange={handleChange}
-                         required
-                        className=' shrink-0 appearance-none w-4 h-4 border-2 border-[#FF7900] rounded-sm bg-white mr-1 checked:bg-[#FF7900] checked:border-0'/>Remember me
+                        className=' shrink-0 appearance-none w-4 h-4 border-2 border-[#FF7900] focus:outline-none rounded-sm bg-white mr-1 checked:bg-[#FF7900] checked:border-0'/>Remember me
                         <br/>
                         <button type='submit'
                         onClick={handleSubmit}
-                        className=' sm:mt-8 sm:w-[250px] hover:bg-[#c37046] sm:h-[52px] md:w-[442px] md:h-[60px]  text-center p-[8px] bg-[#FF7900] rounded-[10px] font-medium md:text-[18px] sm:text-[10px] text-[#FFFFFF]'>Sign In</button>
+                        className=' sm:mt-8 sm:w-[250px] hover:bg-[#c37046] sm:h-[52px] md:w-[300px] focus:outline-none md:h-[45px]  text-center p-[8px] bg-[#FF7900] rounded-[10px] font-medium md:text-[18px] sm:text-[10px] text-[#FFFFFF]'>Sign In</button>
                 </form>
-                <div className='text-center sm:mb-5'>
+                <div className='text-center sm:mb-5 sm:block md:hidden lg:hidden'>
                     <Link to={'/Forgetpassword'} className="text-zinc-800 text-sm font-['Mont'] underline ">Forgot Password?</Link>
                         <h1 className='text-zinc-800 text-sm font-medium font-["Mont"] text-[14px] sm:hidden md:block'>Don't have an account yet?<Link className='text-sm font-black font-["Inter"] text-[#FF7900]' to={'/'}>Sign Up</Link></h1>
                     </div><br/>
             </div>
             <div className='sm:block md:hidden lg:hidden'>
-                <h1 className='text-[#FFF]'>Don’t have an account yet?<Link to={'/'}> SIgn Up</Link></h1>
+                <h1 className='text-[#FFF]'>Don’t have an account yet?<Link to={'/'}> Sign Up</Link></h1>
                 <div className="relative flex py-5 items-center">
                     <div className="flex-grow border-t border-[#FFFFFF] divide-dashed"></div>
                     <span className="flex-shrink mx-4 text-[#FFFFFF]">or</span>

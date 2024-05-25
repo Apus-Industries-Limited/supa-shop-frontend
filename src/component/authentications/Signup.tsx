@@ -6,6 +6,7 @@ import { FaGoogle } from "react-icons/fa";
 import axios from 'axios';
 import { SignUpFormData } from './types/Formtypes';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify'
 
 const Signup: React.FC = () => {
     const API_URL = 'https://supa-shop-backend.onrender.com';
@@ -30,23 +31,26 @@ const Signup: React.FC = () => {
                 const response = await axios.post(`${API_URL}/auth/register`, formData,  {
                     headers: {
                         'Content-Type': 'application/json; charset=UTF-8'
-                    }
+                    },
+                    method: 'POST',
                 });
-                console.log(response.data); // Handle success
+                if(response.status === 200){
+                    toast.success('Registration Successfully')
+                }; // Handle success
                 navigate('/signin')
             } catch (error:any) {
-                throw(error.response.data); // Handle error
+                toast('Detials Not Match'); // Handle error
             }
         };
 
 
 
     return (
-         <div className='bg-[#F4F1F1] sm:w-full sm:h-[932px] md:h-[1344px] lg:w-full lg:h-[1444px] flex font-["Mont"]  flex-col items-center' >
+         <div className='bg-[#F4F1F1] sm:w-full sm:h-[932px] md:h-[1444px] lg:w-full lg:h-[1444px] flex font-["Mont"]  flex-col items-center' >
             <span><h1 className='text-[#000000] text-[24px]  text-center font-black font-["Mont"] w-[83] h-[31] mt-9 md:block sm:hidden'>Sign Up</h1><br/>
             <p  className='text-[#000000] md:text-[20px]  sm:text-[12px] font-black font-["Mont"] w-[136] h-[18] md:block sm:hidden'>Please Sign Up first</p>
             </span>
-            <div className='sm:w-[365px] sm:h-[499px] md:w-[720px] bg-[#FFF] lg:w-[1160px]  lg:h-[879px] m-[30px] flex-shrink-0 rounded-[50px] flex md:space-x-12 md:items-center p-[0px] md:p-[3px] sm:flex-col md:flex-row lg:flex-row  items-center'>
+            <div className='sm:w-[365px] sm:h-[499px] md:w-[720px] bg-[#FFF] lg:w-[1160px]  lg:h-[879px] m-[30px] flex-shrink-0 rounded-[50px] flex md:space-x-9 md:items-center p-[0px] md:p-[3px] sm:flex-col md:flex-row lg:flex-row  items-center'>
            
             <div>
                 <span><h1 className='text-[#1C1B1B] text-[24px]  text-center font-black font-["Mont"] w-[83] h-[31] mt-9 sm:block md:hidden'>Sign Up</h1><br/>
@@ -55,7 +59,7 @@ const Signup: React.FC = () => {
             </div>
 
 
-            <img className="sm:hidden md:w-[250px] md:h-[290px] md:block lg:w-[430px] lg:h-[505px] rounded-[12px] p-[18px]" src={signimage}/>
+            <img className="sm:hidden md:w-[250px] md:h-[290px] md:block lg:w-[430px] lg:h-[505px] rounded-[12px] p-[18px]" src={signimage} alt='SupaShopimage'/>
                 <form  method='POST' onSubmit={handleSubmit}>
 
                 <div className=' sm:pr-18 md:m-20'>    
@@ -64,7 +68,7 @@ const Signup: React.FC = () => {
                         <input type='text' placeholder='@johndoe'value={formData.name} name='name'
                         onChange={handleChange}
                         required
-                         className=' border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[350px] lg:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
+                         className=' border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[300px] lg:w-[442px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
                     </span><br></br>
                     <span>
                         <label className='text-[#000000] text-[14px]'>Email<br/>
@@ -72,7 +76,7 @@ const Signup: React.FC = () => {
                         onChange={handleChange}
                         autoComplete=''
                         required
-                        className='border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[350px] lg:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
+                        className='border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[300px] lg:w-[442px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
                     </span><br></br>
                     <span>
                         <label className='text-[#000000] text-[14px]'>Phone Number<br/>
@@ -81,27 +85,27 @@ const Signup: React.FC = () => {
                          maxLength={10}
                         onChange={handleChange}
                         required
-                        className='border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[350px] lg:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
+                        className='border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[300px] lg:w-[442px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
                     </span><br></br>
                     <span>
                         <label className='text-[#000000] text-[14px]'>Username<br/>
                         <input type='text' placeholder='@johndoe' name='username'  value={formData.username} 
                         onChange={handleChange}
                         required
-                        className='sm:mb-2 sm:w-[307px] border-none sm:h-[40px] focus:outline-none md:w-[350px] lg:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
+                        className='sm:mb-2 sm:w-[307px] border-none sm:h-[40px] focus:outline-none md:w-[300px] lg:w-[442px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
                     </span><br></br>
                         <label className='text-[#000000] text-[14px]'>Password<br/>
                         <input type='password' name='password' placeholder='********' value={formData.password}
                         onChange={handleChange}
                         required
-                         className='sm:mb-2 sm:w-[307px] border-none sm:h-[40px] md:w-[350px] lg:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label><br/>
-                        <br/>
-                        </div>
+                         className='sm:mb-2 sm:w-[307px] border-none sm:h-[40px] md:w-[300px] lg:w-[442px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label><br/>
                         <div className='text-center sm:mb-5'>
                             <button type='submit' 
                                 onClick={handleSubmit}
-                                className=' sm:mt-8 sm:w-[307px] hover:bg-[#c37046] sm:h-[52px] md:w-[442px] md:h-[60px]  text-center p-[8px] bg-[#FF7900] rounded-[10px] font-medium md:text-[18px] sm:text-[16px] text-[#FFFFFF]'>Sign Up</button>       
+                                className=' sm:mt-8 sm:w-[307px] hover:bg-[#c37046] sm:h-[52px] md:w-[300px] md:h-[45px]  text-center p-[8px] bg-[#FF7900] rounded-[10px] font-medium md:text-[18px] sm:text-[16px] text-[#FFFFFF]'>Sign Up</button>       
                         </div><br/>
+                        </div>
+                        
                 </form>
             </div>
             <br/>
