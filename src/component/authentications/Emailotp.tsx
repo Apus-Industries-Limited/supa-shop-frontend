@@ -72,7 +72,7 @@ const handleTheSubmit = async (e: React.FormEvent) => {
                 </div>
                 <br/>
                 <form action='POST' className='text-center' onSubmit={handleTheSubmit} >
-                    <button type='submit' onClick={handleTheSubmit} className="lg:w-[432px] lg:h-[59px] hover:bg-[#c37046] sm:w-[327px] mt-20 lg:ml-24 sm:h-[52px] text-[#FFF] bg-amber-700 rounded-[10px] text-center">
+                    <button type='submit' className="lg:w-[432px] lg:h-[59px] hover:bg-[#c37046] sm:w-[327px] mt-20 lg:ml-24 sm:h-[52px] text-[#FFF] bg-amber-700 rounded-[10px] text-center">
                         Confirm
                     </button>
                 </form>
