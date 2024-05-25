@@ -1,27 +1,30 @@
 import React from 'react';
 import './../../index.css';
+import signimage from '../../assets/image/signinimage.jpg';
+import { Link } from "react-router-dom";
 
 const Signin = () => {
     return (
          <div className='bg-[##F2F2F2] w-full h-[1024px] flex  flex-col items-center font-light' >
             <span><h1 className='text-[#1E1E1E] text-[24px]  text-center font-black font-["Inter"] w-[83] h-[31] mt-9'>Sign In</h1><br/>
-            <p  className='text-[#1E1E1E] text-[20px] font-black font-["Inter"] w-[136] h-[18]'>Please Sign in first</p>
+            <p  className='text-[#1E1E1E] text-[20px] font-black font-["Mont"] w-[136] h-[18]'>Please Sign in first</p>
             </span>
-            <div className='w-[1160px]  h-[496px] bg-[#FF7900] p-[140px] m-[18px] flex-shrink-0 rounded-[15px] flex  flex-col items-center'>
+            <div className='w-[1160px]  h-[496px] bg-[#FF7900] p-[140px] m-[18px] flex-shrink-0 rounded-[15px] flex space-x-12  flex-row items-center'>
+            <img className="w-[369px] h-[492px] rounded-[12px] p-[18px]" src={signimage}/>
                 <form action=' ' method=' '>
                     <span className='mb-20'>
                         <label className='text-[#F2F2F2] text-[18px] not-italic font-light font-["Inter"] border-white'>username</label><br/>
-                        <input type='text' placeholder=' @johndoe' name='username' className='w-[442px] h-[60px] bg-[#F2F2F2] fill-[#F2F2F] rounded-[15px]'/>
+                        <input type='text' placeholder=' @johndoe' name='username' className='w-[442px] h-[60px] bg-[#F2F2F2] focus:outline-none rounded-[15px]'/>
                     </span><br></br>
 
                         <label className='text-[#F2F2F2] text-[18px] not-italic font-light font-["Inter"] mt-32'>password</label><br/>
-                        <input type='password' name='password' placeholder='********' className='w-[442px] h-[60px] focus:placeholder-current  bg-[#F2F2F2] fill-[#F2F2F] rounded-[15px]'/>
+                        <input type='password' name='password' placeholder='********' className='w-[442px] h-[60px] focus:outline-none bg-[#F2F2F2] fill-[#F2F2F] rounded-[15px]'/>
                 </form>
             </div>
             <button type='submit' className='w-[440px] h-[50px] px-[191px] py-3.5 bg-orange-500 rounded-[10px] 
                     justify-center items-center gap-2.5 inline-flex  font-medium text-[18px] text-[#FFFFFF]'>Sign In</button><br/>
                     <div>
-                        <h1 className='text-zinc-800 text-sm font-medium font-["Inter"] text-[14px]'>Don't have an account yet?<a className='text-sm font-black font-["Inter"] text-[#FF7900]' href=''>Sign Up</a></h1>
+                        <h1 className='text-zinc-800 text-sm font-medium font-["Inter"] text-[14px]'>Don't have an account yet?<Link className='text-sm font-black font-["Inter"] text-[#FF7900]' to={'/'}>Sign Up</Link></h1>
                     </div><br/>
             <div className='mt-16'>
                 <h2 className='text-[#1E1E1E] text-[16px]  text-center font-black font-["Inter"] w-[83] h-[31]'>OR</h2>
