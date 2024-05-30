@@ -3,10 +3,10 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
-const vitePWA = VitePWA( {
+const vitePWA = VitePWA({manifest : {
   
-  "name": "Plug",
-  "short_name": "Plug",
+  "name": "SupaShop Ecommerce",
+  "short_name": "SupaShop",
   "description": "E-commerce platform bringing accessibility and transparency to your doorstep 🧡",
   "theme_color": "#000000",
   "icons": [
@@ -26,7 +26,7 @@ const vitePWA = VitePWA( {
       "type": "image/x-icon"
     }
   ]
-})
+}})
 export default defineConfig({
   plugins: [react(),vitePWA],
 })
