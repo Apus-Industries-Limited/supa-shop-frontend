@@ -11,17 +11,17 @@ const Emailotp = () => {
     const [otp, setotp] = useState(new Array(4).fill(""));
     const Navigate = useNavigate()
 
-function handlechange(e:any, index:any){
-    if(isNaN(e.target.value)) return false;
+    function handlechange(e:any, index:any){
+        if(isNaN(e.target.value)) return false;
 
-    setotp(
-        [...otp.map((data, indx)=>(indx === index? e.target.value:data))
-        ]);
+        setotp(
+            [...otp.map((data, indx)=>(indx === index? e.target.value:data))
+            ]);
 
-    if(e.target.value && e.target.nextSibling){
-        e.target.nextSibling.focus()
+        if(e.target.value && e.target.nextSibling){
+            e.target.nextSibling.focus()
+        }
     }
-}
     
     const handleTheSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
