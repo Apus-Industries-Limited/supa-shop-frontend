@@ -1,46 +1,15 @@
-import React, {useState} from 'react';
-import './../../index.css';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import { ForGetPasswordFormData } from './types/Formtypes';
-import { useNavigate } from 'react-router-dom';
+import useBuyerContext from '../hooks/useBuyerContext';
 
 
 const Forgetpassword = () => {
 
-    const API_URL = 'https://supa-shop-backend.onrender.com';
-    const navigate = useNavigate()
-
-    const [formData, setFormData] = useState<ForGetPasswordFormData>({
-
-        email: '',
-        phonenumber: ''
-
-    });
+    const {formData,handleChange, handleForgetPassword} = useBuyerContext()
 
 
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-
-
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post(`${API_URL}/auth/forgot-password`, formData,  {
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
-                }
-            });
-            console.log(response.data, navigate('/signin')); // Handle success
-        } catch (error:any) {
-            throw(error.response.data); // Handle error
-        }
-    };    
+   
 
     return (
         <div>
@@ -73,7 +42,7 @@ const Forgetpassword = () => {
                         value={formData.phonenumber}
                         className=' border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[350px] lg:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/><br/>
                         <button type='submit'
-                        onSubmit={handleSubmit}
+                        onSubmit={handleForgetPassword}
                         className=' sm:mt-8 sm:w-[307px]  hover:bg-[#c37046] sm:h-[52px] lg:w-[442px] md:w-[350px] md:h-[60px]  text-center p-[8px] bg-[#FF7900] rounded-[10px] font-medium md:text-[18px] sm:text-[10px] text-[#FFFFFF]'>Sign In</button> 
                     </form>
 
@@ -85,4 +54,4 @@ const Forgetpassword = () => {
     )
 }
 
-export default React.memo(Forgetpassword)
+export default Forgetpassword;

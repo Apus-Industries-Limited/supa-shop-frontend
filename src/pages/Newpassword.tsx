@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, {useState} from 'react';
-import './../../index.css';
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import axios from 'axios';
@@ -34,7 +34,7 @@ const Newpassword: React.FC = () => {
                 });
                 if (response.status === 200){
                     toast.success('Password Reset')
-                };
+                }
                 navigate('/Signin')// Redirect to signin page
             } catch (error:any) {
                 toast.error(error.response.data); // Handle error
