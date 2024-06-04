@@ -1,48 +1,12 @@
-import React, {useState} from 'react';
-import './../../index.css';
-import signimage from '../../assets/image/signinimage.jpg';
+/* eslint-disable react-refresh/only-export-components */
+import signimage from '../assets/image/signinimage.jpg';
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import { SignInFormData } from './types/Formtypes';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'
+import useBuyerContext from '../hooks/useBuyerContext';
 
 const Signin2 = () => {
-
-    const navigate = useNavigate();
-
-    const API_URL = 'https://supa-shop-backend.onrender.com';
-
-    const [formData, setFormData] = useState<SignInFormData>({
-
-        username: '',
-        password: ''
-
-    });
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post(`${API_URL}/auth/login`, formData,  {
-                headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
-                },
-                method: 'POST',
-            });
-            if (response.data.status === 200){
-                toast.success('Login SUccessful')
-            } // Handle success
-            navigate('/')
-        } catch (error:any) {
-            toast('Detail Not Match'); // Handle error
-        }
-    };
+    const {formData,handleChange, handleLoginSubmit} = useBuyerContext()
 
     return (
          <div className='bg-[#FF7900] sm:w-full sm:h-[932px] md:h-[1024px] lg:w-full lg:h-[1024px] flex font-["Mont"]  flex-col items-center' >
@@ -59,25 +23,28 @@ const Signin2 = () => {
 
 
             <img className="sm:hidden md:block md:w-[250px] md:h-[290px] lg:w-[430px] lg:h-[505px] rounded-[12px] p-[18px]" src={signimage} alt='SupaShop-image'/>
-                <form action='POST'  className=' sm:pr-18 md:m-20'>
+                <form className=' sm:pr-18 md:m-20'>
                     <span>
-                        <label className='text-[#000000] text-[14px]'>Username<br/>
-                        <input type='text' placeholder='@johndoe'
-                        name='username'
-                        value={formData.username}
+                        <label className='text-[#000000] text-[14px]'>Email<br/>
+                        <input type='email' placeholder='@johndoe'
+                        name='email'
+                        value={formData.email}
                         onChange={handleChange}
                         required
                         className='sm:mb-5 sm:w-[250px] sm:h-[38px] focus:outline-none md:w-[300px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
                     </span><br></br>
                         <label className='text-[#000000] text-[18px] sm:mt-32 lg:mt-32'>Password<br/>
-                        <input type='password' name='password' placeholder='********' className='sm:mb-5 sm:w-[250px] sm:h-[38px] md:w-[300px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label><br/>
-                        <input type='checkbox' 
-                         value={formData.password}
-                         onChange={handleChange}
+                        <input type='password' name='password' placeholder='********' value={formData.password}
+                        onChange={handleChange}
+                        required className='sm:mb-5 sm:w-[250px] sm:h-[38px] md:w-[300px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2' />
+                    </label>
+                    <br />
+                    <input type='checkbox' 
+                         
                         className=' shrink-0 appearance-none w-4 h-4 border-2 border-[#FF7900] focus:outline-none rounded-sm bg-white mr-1 checked:bg-[#FF7900] checked:border-0'/>Remember me
                         <br/>
                         <button type='submit'
-                        onClick={handleSubmit}
+                        onClick={handleLoginSubmit}
                         className=' sm:mt-8 sm:w-[250px] hover:bg-[#c37046] sm:h-[52px] md:w-[300px] focus:outline-none md:h-[45px]  text-center p-[8px] bg-[#FF7900] rounded-[10px] font-medium md:text-[18px] sm:text-[10px] text-[#FFFFFF]'>Sign In</button>
                 </form>
                 <div className='text-center sm:mb-5 sm:block md:hidden lg:hidden'>
@@ -136,4 +103,4 @@ const Signin2 = () => {
     
 }
 
-export default React.memo(Signin2)
+export default Signin2

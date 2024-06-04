@@ -1,47 +1,14 @@
-import React, {useState} from 'react';
-import './../../index.css';
-import signimage from '../../assets/image/signinimage.jpg';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import signimage from '../assets/image/signinimage.jpg';
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
-import axios from 'axios';
-import { SignUpFormData } from './types/Formtypes';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'
+import useBuyerContext from '../hooks/useBuyerContext';
 
-const Signup: React.FC = () => {
-    const API_URL = 'https://supa-shop-backend.onrender.com';
+const Signup = () => {
 
-        const [formData, setFormData] = useState<SignUpFormData>({
-            name: '',
-            email: '',
-            phoneNumber: '',
-            username: '',
-            password: ''
-        });
+        const {formData,handleChange, handleRegisterSubmit} = useBuyerContext()
 
-        const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-            setFormData({ ...formData, [e.target.name]: e.target.value });
-        };
-    
-        const navigate = useNavigate();
 
-        const handleSubmit = async (e: React.FormEvent) => {
-            e.preventDefault();
-            try {
-                const response = await axios.post(`${API_URL}/auth/register`, formData,  {
-                    headers: {
-                        'Content-Type': 'application/json; charset=UTF-8'
-                    },
-                    method: 'POST',
-                });
-                if(response.status === 200){
-                    toast.success('Registration Successfully')
-                }; // Handle success
-                navigate('/signin')
-            } catch (error:any) {
-                toast('Detials Not Match'); // Handle error
-            }
-        };
 
 
 
@@ -60,7 +27,7 @@ const Signup: React.FC = () => {
 
 
             <img className="sm:hidden md:w-[250px] md:h-[290px] md:block lg:w-[430px] lg:h-[505px] rounded-[12px] p-[18px]" src={signimage} alt='SupaShopimage'/>
-                <form  method='POST' onSubmit={handleSubmit}>
+                <form  method='POST' onSubmit={handleRegisterSubmit}>
 
                 <div className=' sm:pr-18 md:m-20'>    
                 <span>
@@ -80,16 +47,15 @@ const Signup: React.FC = () => {
                     </span><br></br>
                     <span>
                         <label className='text-[#000000] text-[14px]'>Phone Number<br/>
-                        <input type='tel' placeholder='+234 123 456 789' name='phoneNumber'
-                         value={formData.phoneNumber}
-                         maxLength={10}
+                        <input type='tel' placeholder='+234 123 456 789' name='phone_number'
+                         value={formData.phone_number}
                         onChange={handleChange}
                         required
                         className='border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[300px] lg:w-[442px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
                     </span><br></br>
                     <span>
                         <label className='text-[#000000] text-[14px]'>Username<br/>
-                        <input type='text' placeholder='@johndoe' name='username'  value={formData.username} 
+                        <input type='text'  placeholder='@johndoe' name='username'  value={formData.username} 
                         onChange={handleChange}
                         required
                         className='sm:mb-2 sm:w-[307px] border-none sm:h-[40px] focus:outline-none md:w-[300px] lg:w-[442px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
@@ -101,7 +67,7 @@ const Signup: React.FC = () => {
                          className='sm:mb-2 sm:w-[307px] border-none sm:h-[40px] md:w-[300px] lg:w-[442px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label><br/>
                         <div className='text-center sm:mb-5'>
                             <button type='submit' 
-                                onClick={handleSubmit}
+                                onClick={handleRegisterSubmit}
                                 className=' sm:mt-8 sm:w-[307px] hover:bg-[#c37046] sm:h-[52px] md:w-[300px] md:h-[45px]  text-center p-[8px] bg-[#FF7900] rounded-[10px] font-medium md:text-[18px] sm:text-[16px] text-[#FFFFFF]'>Sign Up</button>       
                         </div><br/>
                         </div>
@@ -132,4 +98,4 @@ const Signup: React.FC = () => {
     )
 }
 
-export default React.memo(Signup)
+export default Signup
