@@ -6,6 +6,11 @@ import Signup from './pages/Signup';
 import Signin2 from './pages/Signin2';
 import BuyerLayout from './Layout/BuyerLayout';
 import Profile from './pages/Profile';
+import FirstComponent from './components/CustomersDetails/FirstComponent/FirstComponent';
+import SecondComponent from './components/CustomersDetails/SecondComponent/SecondComponent';
+import ThirdComponent from './components/CustomersDetails/ThirdComponent/ThirdComponent';
+import FourthComponent from './components/CustomersDetails/FourthComponent/FourthComponent';
+
 
 
 
@@ -24,7 +29,13 @@ function App() {
         <Route path="update-password" element={<Newpassword/>}/>
         <Route path="login" element={<Signin2 />}/>
         <Route path='profile' element={<Profile/>}/>
+        
       </Route>
+      {/* Customers Details Routes */}
+      <Route path='/address' element={<FirstComponent/>}/>
+      <Route path='/card-details' element={<SecondComponent/>}/>
+      <Route path='/delivery-method' element={<ThirdComponent/>}/>
+      <Route path='/order-place-successfully' element={<FourthComponent/>} />
     </Routes>
   )
 }
