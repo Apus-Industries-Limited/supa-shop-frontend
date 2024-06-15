@@ -3,7 +3,9 @@ import logo from "../assets/image/logo.png";
 import { Link } from "react-router-dom";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { X, Facebook, Instagram, LinkedIn } from "@mui/icons-material";
-export const Footer = () => {
+
+
+const Footer = () => {
   return (
     <div className=" bg-[#ff7900] gap-5 py-[30px] px-5 flex flex-wrap justify-between">
       <div className="min-w-[150px] flex flex-col gap-2">
@@ -44,3 +46,5 @@ export const Footer = () => {
     </div>
   );
 };
+
+export default Footer;
