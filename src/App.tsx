@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes } from 'react-router-dom';
+import Emailotp from './pages/Emailotp';
+import Forgetpassword from './pages/Forgetpassword';
+import Newpassword from './pages/Newpassword';
+import Signup from './pages/Signup';
+import Signin2 from './pages/Signin2';
+import BuyerLayout from './Layout/BuyerLayout';
+import Profile from './pages/Profile';
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-        hello world
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Routes>
+      {/* Routes for Buyers */}
+      <Route path='/' element={<BuyerLayout />}>
+        {/*@dev: this next line will be changed once the main home screen is done */}
+        <Route index element={<Signup />} />
+        {/* ... */}
+        <Route path="email-otp" element={<Emailotp/>}/>
+        <Route path="forget-password" element={<Forgetpassword/>}/>
+        <Route path="update-password" element={<Newpassword/>}/>
+        <Route path="login" element={<Signin2 />}/>
+        <Route path='profile' element={<Profile/>}/>
+      </Route>
+    </Routes>
   )
 }
 
