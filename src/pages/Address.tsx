@@ -1,11 +1,11 @@
-import "./FirstComponent.css";
+import "../styles/Address.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Image1 from "../images/step1.jpg";
-import Image2 from "../images/step22.jpg";
-import Image3 from "../images/step3.jpg";
+import Image1 from "../assets/images/step1.jpg";
+import Image2 from "../assets/images/step22.jpg";
+import Image3 from "../assets/images/step3.jpg";
 
-const FirstComponent = () => {
+const Address = () => {
   const navigate = useNavigate()
 
   interface Details {
@@ -166,4 +166,4 @@ const FirstComponent = () => {
   );
 };
 
-export default FirstComponent;
+export default Address;

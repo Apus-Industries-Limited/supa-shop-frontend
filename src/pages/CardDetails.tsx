@@ -1,13 +1,13 @@
-import "./SecondComponent.css"
+import "../styles/CardDetails.css"
 import { useState } from "react";
-import Image1 from "../images/step221.jpg";
-import Image2 from "../images/address.png";
-import Image3 from "../images/step3.jpg";
+import Image1 from "../assets/images/step221.jpg";
+import Image2 from "../assets/images/address.png";
+import Image3 from "../assets/images/step3.jpg";
 
 import { useNavigate } from "react-router-dom";
 
 
-const SecondComponent = () => {
+const CardDetails = () => {
   const navigate = useNavigate()
 
     interface Details {
@@ -142,4 +142,4 @@ const SecondComponent = () => {
   )
 }
 
-export default SecondComponent
+export default CardDetails;
