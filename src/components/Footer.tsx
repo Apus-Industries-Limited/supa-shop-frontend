@@ -1,5 +1,5 @@
-import React from "react";
-import logo from "../assets/image/logo.png";
+
+import logo from "../assets/image/logo2.png";
 import { Link } from "react-router-dom";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { X, Facebook, Instagram, LinkedIn } from "@mui/icons-material";
