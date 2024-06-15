@@ -4,7 +4,6 @@ import { FaInfoCircle } from "react-icons/fa"
 import { FaArrowRightFromBracket, FaBoxOpen, FaCreditCard, FaLocationDot,FaMapLocation, FaUser,FaBell, FaHeadphones } from "react-icons/fa6"
 import MobileHeader from "../components/MobileHeader"
 import Header from "../components/Header"
-import { Footer } from "../components/Footer"
 
 const Profile = () => {
   const personal = [
@@ -147,8 +146,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-      </div>
-      <Footer />
+      </div> 
       
     </section>
   )
