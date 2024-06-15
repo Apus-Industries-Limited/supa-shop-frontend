@@ -1,0 +1,117 @@
+*{
+    font-family: 'Mont';
+}
+
+.step-one-container{
+    width: 100%;
+    height: 100vh;
+    background-color: #F5F5F5;
+    color: #959595;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+}
+
+.inner-container{
+    width: 700px;
+}
+
+.img333{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.img111, .img222 {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.floppy333{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+}
+
+.floppy111, .floppy222{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+}
+
+.shipping-info-header{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    place-items: center;
+
+}
+
+.first-input, .second-input,.Third-input{
+
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-block: 2em;
+}
+
+
+.btn-container{
+    width: 100%;
+    text-align: center;
+}
+
+.btn{
+    width: 300px;
+    height: 50px;
+    border: none;
+    outline: none;
+    background-color: #FD7703;
+    color: #FFFFFF;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.express-delivery{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    place-items: center;
+    height: 3em;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    margin-top: 1em;
+    
+}
+
+.price{
+    width: 100px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    display: grid;
+    place-items: center;
+    height: 100%;
+    background-color: #F0F0F0;
+}
+
+.days {
+    width: 200px;
+    display: grid;
+    place-items: center;
+    height: 100%;
+}
+

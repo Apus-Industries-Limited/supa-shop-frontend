@@ -6,6 +6,11 @@ import Signup from './pages/Signup';
 import Signin2 from './pages/Signin2';
 import BuyerLayout from './Layout/BuyerLayout';
 import Profile from './pages/Profile';
+import Address from './pages/Address'
+import CardDetails from './pages/CardDetails';
+import Delivery from './pages/Delivery';
+import OrderCompleted from './pages/OrderCompleted';
+
 
 
 
@@ -24,7 +29,13 @@ function App() {
         <Route path="update-password" element={<Newpassword/>}/>
         <Route path="login" element={<Signin2 />}/>
         <Route path='profile' element={<Profile/>}/>
+        
       </Route>
+      {/* Customers Details Routes */}
+      <Route path='address' element={<Address/>}/>
+        <Route path='card-details' element={<CardDetails/>}/>
+      <Route path='delivery-method' element={<Delivery/>}/>
+      <Route path='order-successfull' element={<OrderCompleted/>} />
     </Routes>
   )
 }
