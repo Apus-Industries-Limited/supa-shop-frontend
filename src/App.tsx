@@ -29,13 +29,13 @@ function App() {
         <Route path="update-password" element={<Newpassword/>}/>
         <Route path="login" element={<Signin2 />}/>
         <Route path='profile' element={<Profile/>}/>
-        
+        <Route path='address' element={<Address/>}/>
+        <Route path='card-details' element={<CardDetails/>}/>
+        <Route path='delivery-method' element={<Delivery/>}/>
+        <Route path='order-successfull' element={<OrderCompleted/>} />
       </Route>
       {/* Customers Details Routes */}
-      <Route path='address' element={<Address/>}/>
-        <Route path='card-details' element={<CardDetails/>}/>
-      <Route path='delivery-method' element={<Delivery/>}/>
-      <Route path='order-successfull' element={<OrderCompleted/>} />
+      
     </Routes>
   )
 }
