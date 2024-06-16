@@ -84,6 +84,7 @@ export const BuyerProvider = (props: Props) => {
         phone_number: "",
         confirmpassword:""
       })
+      console.log(response.data)
     navigate('/email-otp')
     } catch (error) {
     toast('Detials Not Match'); // Handle error
