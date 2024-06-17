@@ -4,9 +4,14 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import useBuyerContext from '../hooks/useBuyerContext';
+import { useEffect } from 'react';
 
 const Signin2 = () => {
-    const {formData,handleChange, handleLoginSubmit} = useBuyerContext()
+    const { formData, handleChange, handleLoginSubmit, persist, setPersist } = useBuyerContext()
+    
+    useEffect(() => {
+        localStorage.setItem("persist",persist)
+    },[persist])
 
     return (
          <div className='bg-[#FF7900] sm:w-full sm:h-[932px] md:h-[1024px] lg:w-full lg:h-[1024px] flex font-["Mont"]  flex-col items-center' >
@@ -39,7 +44,7 @@ const Signin2 = () => {
                         required className='sm:mb-5 sm:w-[250px] sm:h-[38px] md:w-[300px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2' />
                     </label>
                     <br />
-                    <input type='checkbox' 
+                    <input type='checkbox' value={persist} onChange={()=>setPersist(!persist)}
                          
                         className=' shrink-0 appearance-none w-4 h-4 border-2 border-[#FF7900] focus:outline-none rounded-sm bg-white mr-1 checked:bg-[#FF7900] checked:border-0'/>Remember me
                         <br/>
