@@ -1,5 +1,5 @@
 
-import logo from "../assets/image/logo2.png";
+import logo from "../assets/image/logo5.png";
 import { Link } from "react-router-dom";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { X, Facebook, Instagram, LinkedIn } from "@mui/icons-material";
@@ -14,7 +14,7 @@ const Footer = () => {
           {" "}
           Please Contact us at admin@supashop.com
         </p>
-        <img src={logo} className="w-[100px]" alt="" />
+        <img src={logo} className="w-[150px]" alt="" />
       </div>
       <div className="min-w-[100px] flex flex-col gap-2">
         <h3 className="text-white font-bold text-lg"> Footer #1</h3>

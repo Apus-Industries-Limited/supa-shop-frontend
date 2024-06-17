@@ -3,6 +3,7 @@ import signimage from '../assets/image/signinimage.jpg';
 import { FaPhoneAlt } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import useBuyerContext from '../hooks/useBuyerContext';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
 
@@ -32,14 +33,14 @@ const Signup = () => {
                 <div className=' sm:pr-18 md:m-20'>    
                 <span>
                         <label className='text-[#000000] text-[14px]'>Name<br/>
-                        <input type='text' placeholder='@johndoe'value={formData.name} name='name'
+                        <input type='text' placeholder='John doe' value={formData.name} name='name'
                         onChange={handleChange}
                         required
                          className=' border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[300px] lg:w-[442px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
                     </span><br></br>
                     <span>
                         <label className='text-[#000000] text-[14px]'>Email<br/>
-                        <input type='email' placeholder='@johndoe' value={formData.email} name='email'
+                        <input type='email' placeholder='example@email.com' value={formData.email} name='email'
                         onChange={handleChange}
                         autoComplete=''
                         required
@@ -61,7 +62,7 @@ const Signup = () => {
                         className='sm:mb-2 sm:w-[307px] border-none sm:h-[40px] focus:outline-none md:w-[300px] lg:w-[442px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label>
                     </span><br></br>
                         <label className='text-[#000000] text-[14px]'>Password<br/>
-                        <input type='password' name='password' placeholder='********' value={formData.password}
+                        <input type='password' name='password' placeholder='Enteer a strong password' value={formData.password}
                         onChange={handleChange}
                         required
                          className='sm:mb-2 sm:w-[307px] border-none sm:h-[40px] md:w-[300px] lg:w-[442px] md:h-[45px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/></label><br/>
@@ -74,8 +75,10 @@ const Signup = () => {
                         
                 </form>
             </div>
+            
             <br/>
-            <br/>
+            <br />
+            <p className='text-black '>Already have an account? <Link to='/login' className='text-[#FF7900] hover:bg-[#ff7900] hover:text-white rounded-md hover:shadow-sm py-2 px-3'>Sign In</Link></p>
             <div className=''>
                 <div className="relative flex py-5 items-center">
                     <div className="flex-grow border-t border-[#FF7900] divide-dashed"></div>
