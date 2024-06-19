@@ -21,3 +21,14 @@ export interface RestPasswordFormData {
     confirmpassword: string;
 }
 
+export interface FormData{
+    name: string | null;
+    email: string | null;
+    phone_number: string | null;
+    username: string | null;
+    password: string | null;
+    confirmpassword: string | null;
+}
+
+
+
