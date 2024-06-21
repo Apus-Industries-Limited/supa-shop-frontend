@@ -1,10 +1,10 @@
-import logo from "../assets/image/logo.png";
+import logo from "../assets/image/logo3.png";
 import search from "../assets/image/search.png";
 import setting from "../assets/image/setting.png";
 import { Close } from "@mui/icons-material";
 import cart from "../assets/image/cart.png";
 import { Link } from "react-router-dom";
-import "./customMediaQuery.css";
+import "../styles/customMediaQuery.css";
 import { useState } from "react";
 import { Menu } from "@mui/icons-material";
 

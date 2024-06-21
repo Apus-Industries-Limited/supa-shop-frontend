@@ -1,11 +1,11 @@
-import "./FirstComponent.css";
+import "../styles/Address.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import Image1 from "../images/step1.jpg";
-import Image2 from "../images/step22.jpg";
-import Image3 from "../images/step3.jpg";
+import Image1 from "../assets/image/step1.jpg";
+import Image2 from "../assets/image/step22.jpg";
+import Image3 from "../assets/image/step3.jpg";
 
-const FirstComponent = () => {
+const Address = () => {
   const navigate = useNavigate()
 
   interface Details {
@@ -24,9 +24,9 @@ const FirstComponent = () => {
   });
 
 
-  let InputTarget = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let name = e.target.name;
-    let value = e.target.value;
+  const InputTarget = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name;
+    const value = e.target.value;
     setUserDetails((user) => ({
       ...user,
       [name]: value,
@@ -166,4 +166,4 @@ const FirstComponent = () => {
   );
 };
 
-export default FirstComponent;
+export default Address;

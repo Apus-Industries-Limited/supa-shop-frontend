@@ -2,8 +2,9 @@
 import { createContext, useState } from "react";
 import { FormData } from "../types/Formtypes";
 import axios from "../utils/axios";
-import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { toastMsg } from "../utils/toast";
+
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -18,6 +19,8 @@ export const BuyerProvider = (props: Props) => {
   const back = () => {
     navigate(-1)
   }
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/";
 
   const [formData, setFormData] = useState<FormData>({
     name:"",
@@ -29,6 +32,10 @@ export const BuyerProvider = (props: Props) => {
   });
   const [user, setUser] = useState<object | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
+  const [persist, setPersist] = useState<boolean | null>(() => {
+    const storedValue = localStorage.getItem('persist');
+    return storedValue !== null ? JSON.parse(storedValue) : false;
+  } )
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData , [e.target.name]: e.target.value });
@@ -44,22 +51,29 @@ export const BuyerProvider = (props: Props) => {
               'Content-Type': 'application/json; charset=UTF-8'
             },
         });
-        if (response.data.status === 200){
-          toast.success('Login SUccessful')
-          setUser(response.data)
-          setFormData({
-            name:"",
-            username: '',
-            password: "",
-            email: "",
-            phone_number: "",
-            confirmpassword:""
-          })
-      } // Handle success
+      setUser(response.data?.user)
+      toastMsg('success','Login Successful')
+      setFormData({
+        name:"",
+        username: '',
+        password: "",
+        email: "",
+        phone_number: "",
+        confirmpassword:""
+      }) // Handle success
       console.log(response.data)
-        navigate('/')
-    } catch (error) {
-      toast('Detail Not Match'); // Handle error
+      navigate(from,{replace:true})
+    } catch (err:any) {
+      if ( !err.response ) {
+          toastMsg("error",'No server response')
+        }else if ( err.response?.status === 400 ){
+        toastMsg("error", 'Missing Email or password' )
+      } else if (err.response?.status === 401){
+        toastMsg("error",'Invalid Email or password')
+      }
+      else {
+        toastMsg("error",'Login Failed')
+      } // Handle error
     } finally {
       setLoading(false)
     }
@@ -74,9 +88,8 @@ export const BuyerProvider = (props: Props) => {
           'Content-Type': 'application/json; charset=UTF-8'
         },
     });
-    if(response.status === 200){
-        toast.success('Registration Successfully')
-      } // Handle success
+      toastMsg("success", 'Registration Successfully')
+      console.log(response.data)
       setFormData({ ...formData,
         name:"",
         username: '',
@@ -84,9 +97,16 @@ export const BuyerProvider = (props: Props) => {
         phone_number: "",
         confirmpassword:""
       })
+      console.log(response.data)
     navigate('/email-otp')
-    } catch (error) {
-    toast('Detials Not Match'); // Handle error
+    } catch (err:any) {
+    if ( !err?.response ) {
+          toastMsg("error",'No server response')
+        } else if (err.response?.status === 409) {
+        toastMsg("error",'Email already exist. Enter an new email')
+      } else {
+        toastMsg("error",'Registration failed. pls try again or contact the admin support')
+      } // Handle error
     }
   };
 
@@ -98,16 +118,17 @@ export const BuyerProvider = (props: Props) => {
                     'Content-Type': 'application/json; charset=UTF-8'
                 }
             });
-            console.log(response.data, navigate('login')); // Handle success
+          console.log(response.data,); // Handle success
+          navigate('login')
         } catch (error:any) {
           const errMsg: string|any = error.message
-            toast(errMsg) // Handle error
+            toastMsg("error",errMsg) // Handle error
         }
     }; 
 
 
   return (
-    <BuyerContext.Provider value={{ formData,handleChange, handleLoginSubmit,user,loading,handleRegisterSubmit, handleForgetPassword,back}}>
+    <BuyerContext.Provider value={{ formData,handleChange, handleLoginSubmit,user,loading,handleRegisterSubmit, handleForgetPassword,back,setUser,persist,setPersist}}>
       {props.children}
     </BuyerContext.Provider>
   )

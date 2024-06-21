@@ -1,13 +1,13 @@
-import "./SecondComponent.css"
+import "../styles/CardDetails.css"
 import { useState } from "react";
-import Image1 from "../images/step221.jpg";
-import Image2 from "../images/address.png";
-import Image3 from "../images/step3.jpg";
+import Image1 from "../assets/image/step221.jpg";
+import Image2 from "../assets/image/address.png";
+import Image3 from "../assets/image/step3.jpg";
 
 import { useNavigate } from "react-router-dom";
 
 
-const SecondComponent = () => {
+const CardDetails = () => {
   const navigate = useNavigate()
 
     interface Details {
@@ -27,9 +27,9 @@ const SecondComponent = () => {
 
       
     
-      let InputTarget = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let name = e.target.name;
-        let value = e.target.value;
+      const InputTarget = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const name = e.target.name;
+        const value = e.target.value;
         setUserDetails((user) => ({
           ...user,
           [name]: value,
@@ -142,4 +142,4 @@ const SecondComponent = () => {
   )
 }
 
-export default SecondComponent
+export default CardDetails;

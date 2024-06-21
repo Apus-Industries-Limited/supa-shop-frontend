@@ -1,9 +1,9 @@
-import "./FourthComponent.css"
+import "../styles/OrderCompleted.css"
 import { CiCircleInfo } from "react-icons/ci"
 import { FaAngleLeft } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
-const FourthComponent = () => {
+const OrderCompleted = () => {
     return (
         <div className="step-one-container">
 
@@ -35,4 +35,4 @@ const FourthComponent = () => {
     )
 }
 
-export default FourthComponent
+export default OrderCompleted

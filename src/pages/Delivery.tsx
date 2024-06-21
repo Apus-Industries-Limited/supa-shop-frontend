@@ -1,10 +1,10 @@
-import "./ThirdComponent.css"
-import Image1 from "../images/address.png"
-import Image2 from "../images/step22.jpg"
-import Image3 from "../images/step33.jpg"
+import "../styles/Delivery.css"
+import Image1 from "../assets/image/address.png"
+import Image2 from "../assets/image/step22.jpg"
+import Image3 from "../assets/image/step33.jpg"
 
 
-const ThirdComponent = () => {
+const Delivery = () => {
 
   return (
     <div className="step-one-container">
@@ -69,4 +69,4 @@ const ThirdComponent = () => {
   )
 }
 
-export default ThirdComponent
+export default Delivery;
