@@ -8,7 +8,7 @@ import "react-toastify/ReactToastify.css"
 const BuyerLayout = () => {
   return (
     <BuyerProvider>
-      <main className="bg-[#eeeeee] text-[#2a2a2a] dark:bg-[#2a2a2a] dark:text-[#eeeeee] min-h-screen max-w-full overflow-hidden">
+      <main className="min-h-screen max-w-full overflow-hidden font-['Mont']">
         <Header />
         <ToastContainer/>
         <Outlet/>

@@ -10,6 +10,8 @@ import { toastMsg } from "../utils/toast";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const BuyerContext = createContext<null | any>({})
 
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%.,;]).{8,24}$/
+const EMAIL_REGEX = /^[a-zA-z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 interface Props {
   children: React.ReactNode
 }
@@ -32,6 +34,10 @@ export const BuyerProvider = (props: Props) => {
   });
   const [user, setUser] = useState<object | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
   const [persist, setPersist] = useState<boolean | null>(() => {
     const storedValue = localStorage.getItem('persist');
     return storedValue !== null ? JSON.parse(storedValue) : false;
@@ -44,7 +50,6 @@ export const BuyerProvider = (props: Props) => {
   const handleLoginSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true)
-    console.log("logging in")
     try {
         const response = await axios.post(`/auth/login`, formData,  {
             headers: {
@@ -81,8 +86,27 @@ export const BuyerProvider = (props: Props) => {
 
   const handleRegisterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("registering")
+    const v1 = EMAIL_REGEX.test(formData.email);
+    const v2 = PWD_REGEX.test(formData.password);
+    /***
+    @dev This is to check if the email and password passes regex requirement
+    */
+    if (!v1) {
+      toastMsg("error", 'Enter a valid email');
+      return;
+    }
+
+    if (!v2) {
+      toastMsg("error", 'Password must be 8 to 24 characters long which must include 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character');
+      return;
+    }
+
+    if (formData.password !== formData.confirmpassword) {
+      toastMsg("error", 'Password does not match ');
+      return;
+    }
     try {
+      setLoading(true)
       const response = await axios.post(`/auth/register`, formData,  {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
@@ -100,13 +124,17 @@ export const BuyerProvider = (props: Props) => {
       console.log(response.data)
     navigate('/email-otp')
     } catch (err:any) {
-    if ( !err?.response ) {
-          toastMsg("error",'No server response')
-        } else if (err.response?.status === 409) {
-        toastMsg("error",'Email already exist. Enter an new email')
-      } else {
+      if (!err?.response) {
+        toastMsg("error", 'No server response')
+      } else if (err.response?.status === 409) {
+        toastMsg("error", 'Email already exist')
+      } else if (err.response?.status) { 
+        toastMsg("error", 'All fields must be entered')
+      } else{
         toastMsg("error",'Registration failed. pls try again or contact the admin support')
       } // Handle error
+    } finally {
+      setLoading(false)
     }
   };
 
@@ -128,7 +156,7 @@ export const BuyerProvider = (props: Props) => {
 
 
   return (
-    <BuyerContext.Provider value={{ formData,handleChange, handleLoginSubmit,user,loading,handleRegisterSubmit, handleForgetPassword,back,setUser,persist,setPersist}}>
+    <BuyerContext.Provider value={{ formData,handleChange, handleLoginSubmit,user,loading,handleRegisterSubmit, handleForgetPassword,back,setUser,persist,setPersist,toggleVisibility,isVisible}}>
       {props.children}
     </BuyerContext.Provider>
   )

@@ -7,7 +7,7 @@ import { X, Facebook, Instagram, LinkedIn } from "@mui/icons-material";
 
 const Footer = () => {
   return (
-    <div className=" bg-[#ff7900] gap-5 py-[30px] px-5 flex flex-wrap justify-between">
+    <div className=" bg-[#ff7900] gap-5 py-[30px] px-5 flex flex-wrap justify-between fixedsticky  bottom-0 left-0 w-full">
       <div className="min-w-[150px] flex flex-col gap-2">
         <h3 className="text-white font-bold text-lg"> Contact Us</h3>
         <p className="text-white text-sm">

@@ -1,5 +1,5 @@
-import { BsBell, BsChevronLeft } from "react-icons/bs"
-import { useNavigate } from "react-router-dom"
+import { BsBell } from "react-icons/bs"
+import BackButton from "./BackButton";
 
 
 interface prop {
@@ -7,10 +7,9 @@ interface prop {
 }
 
 const MobileHeader = ({ title }: prop) => {
-  const navigate = useNavigate();
   return (
     <div className="md:hidden flex justify-between items-center py-8 px-6 border-b rounded-sm mx-2">
-        <BsChevronLeft role="button" onClick={()=> navigate(-1)}/>
+        <BackButton/>
         <p className="text-xl font-bold capitalize">{title}</p>
         <BsBell role="button"/>
       </div>
