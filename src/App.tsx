@@ -3,7 +3,7 @@ import Emailotp from './pages/Emailotp';
 import Forgetpassword from './pages/Forgetpassword';
 import Newpassword from './pages/Newpassword';
 import Signup from './pages/Signup';
-import Signin2 from './pages/Signin2';
+import Signin from './pages/Signin';
 import BuyerLayout from './Layout/BuyerLayout';
 import Profile from './pages/Profile';
 import Address from './pages/Address'
@@ -29,7 +29,7 @@ function App() {
         <Route path="email-otp" element={<Emailotp/>}/>
         <Route path="forget-password" element={<Forgetpassword/>}/>
         <Route path="update-password" element={<Newpassword/>}/>
-        <Route path="login" element={<Signin2 />}/>
+        <Route path="login" element={<Signin />}/>
         <Route path='profile' element={<Profile />} />
         
         {/*
