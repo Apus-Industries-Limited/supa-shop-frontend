@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import { Link } from "react-router-dom";
 import useBuyerContext from '../hooks/useBuyerContext';
+import BackButton from '../components/BackButton';
 
 
 const Forgetpassword = () => {
@@ -13,11 +12,11 @@ const Forgetpassword = () => {
 
     return (
         <div>
-            <div className='sm:w-[430px] sm:h-[950px] lg:w-full md:w-[910px] md:h-[1390px]  lg:h-[1024px] lg:bg-[#F4F1F1] md:bg-[#F4F1F1] flex  flex-row sm:flex sm:flex-col sm:space-x-0 font-light lg:space-x-8 sm:bg-[#FF7900] sm:p-7 md:p-16'>
+            <div className='lg:w-full md:w-[910px] md:h-[1390px]  lg:h-[1024px] lg:bg-[#F4F1F1] md:bg-[#F4F1F1] flex  flex-row sm:flex sm:flex-col sm:space-x-0 font-light lg:space-x-8  sm:p-7 md:p-16'>
                 <div className=' font-normal flex item-start ml-16 m-5'>
-                    <Link to={'/Signin'} className='text-[20px] hover:bg-[#c37046] bg-[#B35500] sm:text-[15px] rounded-[20px] p-2 text-white font-["Mont"]' ><span><ArrowBackIosNewIcon/></span> Back</Link>
+                    <BackButton/>
                 </div>
-                <div className='sm:w-[365px] sm:h-[480px] lg:w-[1160px]  lg:h-[664px] bg-[#FFFFFF] m-[30px] md:w-[720px] flex-shrink-0 rounded-[32px] flex md:space-x-12 md:items-center p-[0px] sm:flex-col md:flex-col  sm:items-center lg:flex-col  items-center '>
+                <div className=' lg:w-[1160px]  lg:h-[664px] bg-[#FFFFFF] m-[30px] md:w-[720px] flex-shrink-0 rounded-[32px] flex md:space-x-12 md:items-center p-3 sm:flex-col md:flex-col  sm:items-center lg:flex-col  items-center '>
                     <span><h1 className='text-[#1E1E1E] text-[24px]  text-center font-black font-["Mont"] w-[83] h-[31] mt-9'>Forget Password?</h1><br/>
                         <p  className='text-[#1E1E1E] text-[20px] font-light font-["Mont"] w-[136] h-[18]'>Choose Your Recovery Option</p>
                     </span>
