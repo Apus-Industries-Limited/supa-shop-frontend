@@ -15,9 +15,9 @@ const Signin = () => {
     },[persist])
 
     return (
-        <div className=" mx-auto m-4 container bg-gray-200 rounded-md py-8 px-6">
+        <div className=" mx-auto m-4 container bg-neutral-50 rounded-md py-8 px-6 shadow-xl">
             <BackButton />
-            <div className="mt-10 border-3 border-[#FF7900] rounded p-6 grid grid-cols-1 w-3/4 mx-auto gap-4 md:w-3/5 lg:w-1/2">
+            <div className="p-2 mt-10 border-3 border-[#FF7900] rounded-2xl md:p-6 grid grid-cols-1 mx-auto gap-4 md:w-3/5 lg:w-1/2">
                 <p className=" text-2xl font-bold mt-0 text-center">Sign in</p>
                 <p className='text-center text-small mb-2'>Kindly sign in to start shopping!</p>
                 <Input

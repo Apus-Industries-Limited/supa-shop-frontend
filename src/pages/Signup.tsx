@@ -13,13 +13,13 @@ const Signup = () => {
     const toggle = () => setConfirmVisible(!confirmVisible);
 
     return(
-        <div className=" mx-auto m-4 container bg-gray-200 rounded-md py-8 px-6">
-            <p className="text-center text-2xl font-bold">Welcome to SupaShop</p>
-            <p className="text-center">Kindly sign up to start shopping</p>
+        <div className=" mx-auto m-4 container bg-neutral-50 shadow-xl rounded-md py-8 px-6">
+            <p className="text-center text-xl font-bold">Welcome to SupaShop</p>
+            <p className="text-center text-sm">Kindly sign up to start shopping</p>
 
             {/* mobile and Tablets */}
 
-            <div className="lg:hidden mt-10 border-3 border-[#FF7900] rounded p-6 grid grid-cols-1 mx-auto gap-4 md:w-3/5">
+            <div className="lg:hidden mt-10 border-3 border-[#FF7900] rounded-2xl p-3 lg:p-6 grid grid-cols-1 mx-auto gap-4 md:w-3/5">
                 <Input
                     labelPlacement='outside'
                     type="text"

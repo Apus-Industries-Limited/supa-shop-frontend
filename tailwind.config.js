@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        custom: ['Mont', 'sans-serif'],
+        mont:["mont"]
       },
     },
   },
