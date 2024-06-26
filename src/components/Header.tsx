@@ -1,74 +1,187 @@
-import logo from "../assets/image/logo3.png";
-import search from "../assets/image/search.png";
-import setting from "../assets/image/setting.png";
-import { Close } from "@mui/icons-material";
-import cart from "../assets/image/cart.png";
 import { Link } from "react-router-dom";
+import Icon from "../assets/image/6.png"
 import "../styles/customMediaQuery.css";
 import { useState } from "react";
-import { Menu } from "@mui/icons-material";
+import { Badge, Button, Image, Input, Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react"
+import { BsBell, BsCart3, BsGear, BsList, BsMoon, BsQuestionCircle, BsSearch, BsSunFill, BsXLg } from "react-icons/bs";
+
 
 const Header: React.FC = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleIsOpen = (): void => {
     setIsOpen(!isOpen);
-    console.log("biiiiii");
   };
 
+  const mobileLinks = [
+    {
+      name: "Apparel",
+      link: "/apparel"
+    },
+    {
+      name: "Home & Furniture",
+      link: "/apparel"
+    },
+    {
+      name: "Electronics",
+      link: "/electronics"
+    },
+    {
+      name: "Beauty & Personal Care",
+      link: "/beauty"
+    },
+    {
+      name: "Sport | Outdoors",
+      link: "/sport"
+    },
+    {
+      name: "Toy | Games",
+      link: "/game"
+    },
+    {
+      name: "Health | Wellness",
+      link: "/health"
+    },
+    {
+      name: "Jewelry | Accessories",
+      link: "/accessories"
+    },
+    {
+      name: "Automobile",
+      link: "/automobile"
+    },
+    {
+      name: "Groceries",
+      link: "/food"
+    }
+  ]
+
   return (
-    <div className="h-[13vh] bg-white flex w-screen justify-between items-center px-5">
-      <img src={logo} alt="Logo" className="w-[150px]" />
-      <div className="flex customfade text-neutral-600 gap-3 ">
-        <Link to="/home">Home</Link>
-        <Link to="/home">About</Link>
-        <Link to="/home">Shop</Link>
-        <Link to="/home">Checkout </Link>
-        <Link to="/home">Wishlist</Link>
-        <Link to="/home">Account</Link>
-      </div>
-      <div className="hidden md:flexhidden md:flex justify-between gap-5">
-        <div className="relative flex  items-center ">
-          <img src={search} alt="" className="absolute left-3" />
-          <input
-            type="search"
-            name="search"
-            className="rounded-xl p-1 border-neutral-500 pl-10 w-[200px] text-neutral-400 "
-            placeholder="Search here.."
-          />
-        </div>
-        <img src={setting} alt="" />
-        <img src={cart} alt="" />
-      </div>
-      <div className="flex md:hidden text-neutral-600 ">
-        <Menu onClick={toggleIsOpen} />
-      </div>
-      <div className="absolute w-screen transition duration-300">
-        <div
-          className={`fixed p-10 bg-white flex flex-col text-neutral-600 gap-8 top-0 ${
-            isOpen ? " right-[-100%]" : "right-0"
-          } h-screen w-1/2 transition duration-300`}
-        >
-          <Close className="text-neutral-600" onClick={toggleIsOpen} />
-          <Link to="/home" className="border-b ">
+    <Navbar className="shadow" position="sticky" isBlurred>
+      
+      <NavbarBrand>
+        <Link to="/" className="md:flex hidden items-center">
+          <Image src={Icon} height={36} width={36} />
+          <p className="font-bold text-inherit font-mont hidden md:inline-block">SupaShop</p>
+        </Link>
+        <Link to="/profile" className="flex md:hidden items-center">
+          <Image src={Icon} height={36} width={36} className="rounded-full shadow-xl" />
+          <div className="ms-1">
+            <p className="text-[1rem]">Hi,<span className="font-bold"> Wems</span>
+            </p>
+          </div>
+        </Link>
+      </NavbarBrand>
+      
+      {/* Design for Desktop View */}
+      <NavbarContent as="div" className="hidden md:flex gap-4" justify="center">
+        <NavbarItem className="bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-3">
+          <Link  to="/">
             Home
           </Link>
-          <Link to="/home" className="border-b ">
+        </NavbarItem>
+        <NavbarItem>
+          <Link to="/about" aria-current="page">
             About
           </Link>
-          <Link to="/home" className="border-b ">
-            Shop
+        </NavbarItem>
+        <NavbarItem>
+          <Link  to="/shop">
+            Shops
           </Link>
-          <Link to="/home" className="border-b ">
-            Checkout{" "}
-          </Link>
-          <Link to="/home" className="border-b ">
+        </NavbarItem>
+        <NavbarItem>
+          <Link  to="/wishlist">
             Wishlist
           </Link>
-          <Link to="/home">Account</Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link  to="/profile">
+            Account
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      <NavbarContent as="div" className="items-center hidden md:flex" justify="end">
+        <Input classNames={{ 
+          base: "max-w-full sm:max-w-[10rem] h-10",
+            mainWrapper: "h-full",
+            input: "text-small",
+            inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+        }}
+          placeholder="Type to search"
+          size="sm"
+          startContent={
+            <BsSearch size={18}/>
+          }
+          type="search"
+        />
+        <NavbarItem>
+          <Link to='/settings'>
+            <div className=" p-1 rounded-full bg-[#FF7900] text-white">
+              <BsGear size={24} />
+            </div>
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link to="/cart">
+            <Badge content="70" color="primary">
+              <BsCart3 size={24}/>
+            </Badge>
+          </Link>
+        </NavbarItem>
+      </NavbarContent>
+      {/* Design for Mobile View */}
+      <NavbarContent justify="end" className="md:hidden">
+        <NavbarItem>
+          <BsSearch size={20}/>
+        </NavbarItem>
+        <NavbarItem>
+          <BsBell size={20}/>
+        </NavbarItem>
+        <NavbarItem as="button" onClick={toggleIsOpen}>
+          <BsList size={20}/>
+        </NavbarItem>
+      </NavbarContent>
+      {isOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-lg z-20 h-screen md:hidden">
+          <div className={isOpen ? "md:hidden absolute top-0 left-0 z-10 w-3/4 bg-white shadow-md h-full px-3 py-4 flex flex-col animate-slideIn overflow-x-auto" : "md:hidden absolute top-0 left-0 z-10 w-3/4 bg-white shadow-md h-full px-3 py-4 flex flex-col animate-slideOut"}>
+            <div className="flex sticky md:hidden mb-4 items-center">
+              <Image src={Icon} height={36} width={36} className="rounded-full shadow-xl" />
+              <div className="ms-2">
+                <p className="text-sm font-bold">Wemimoola Olajuwon </p>
+                <p className="text-xs py-0 my-0 font-thin">example@gmail.com</p>
+              </div>
+              <BsXLg size={20} className="ms-auto" role="button" onClick={toggleIsOpen}/>
+            </div>
+            <div className="grid grid-col-1 mt-3 mb-2 gap-3 pb-6">
+              {mobileLinks.map(item => (
+                <Link key={mobileLinks.indexOf(item)} to={item.link} className="p-2 text-sm bg-gray-100 rounded-lg hover:bg-gray-300 hover:font-semibold border-l-3 border-l-[#ff7900]">
+                  <p className="my-auto">{item.name}</p>
+                </Link>
+              ))}
+            </div>
+            
+            <div className="mt-auto">
+              <hr />
+              <div className="flex items-center">
+                <BsQuestionCircle  className="me-2 text-medium"/>
+                <p>color scheme</p>
+              </div>
+              <div className="bg-neutral-300 rounded-full p-1 w-full">
+                <Button radius="full" className="bg-white shadow-lg w-1/2 p">
+                  <BsSunFill className="text-[#ff7900] font-bold"/>
+                  Light
+                </Button>
+                <Button className="shadow-lg w-1/2">
+                  <BsMoon/>
+                  Dark
+                </Button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </Navbar>
   );
 };
 
