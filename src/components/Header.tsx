@@ -2,12 +2,15 @@ import { Link } from "react-router-dom";
 import Icon from "../assets/image/6.png"
 import "../styles/customMediaQuery.css";
 import { useState } from "react";
-import { Badge, Button, Image, Input, Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react"
-import { BsBell, BsCart3, BsGear, BsList, BsMoon, BsQuestionCircle, BsSearch, BsSunFill, BsXLg } from "react-icons/bs";
+import { Badge, Button, Image, Input, Navbar, NavbarBrand, NavbarContent, NavbarItem,Avatar } from "@nextui-org/react"
+import { BsBell, BsCart3, BsGear, BsList, BsMoon, BsPersonCircle, BsQuestionCircle, BsSearch, BsSunFill, BsXLg } from "react-icons/bs";
+import useBuyerContext from "../hooks/useBuyerContext";
+import avatar from "../assets/image/avatar.jpg";
 
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const {user} = useBuyerContext()
 
   const toggleIsOpen = (): void => {
     setIsOpen(!isOpen);
@@ -57,32 +60,42 @@ const Header: React.FC = () => {
   ]
 
   return (
-    <Navbar className="shadow" position="sticky" isBlurred>
+    <Navbar className="shadow px-3" position="sticky" isBlurred maxWidth="full">
       
       <NavbarBrand>
         <Link to="/" className="md:flex hidden items-center">
           <Image src={Icon} height={36} width={36} />
           <p className="font-bold text-inherit font-mont hidden md:inline-block">SupaShop</p>
         </Link>
-        <Link to="/profile" className="flex md:hidden items-center">
-          <Image src={Icon} height={36} width={36} className="rounded-full shadow-xl" />
-          <div className="ms-1">
-            <p className="text-[1rem]">Hi,<span className="font-bold"> Wems</span>
-            </p>
-          </div>
+        {user?.name ? (
+          <Link to="/profile" className="flex md:hidden items-center">
+            {user.dp ? (
+              <Avatar src={ user.dp } />
+            ) : (
+              <Avatar src={avatar}/>
+            )}
+            <div className="ms-1">
+              <p className="text-[1rem]">Hi,<span className="font-bold"> {user.username}</span>
+              </p>
+            </div>
+          </Link>
+        ) : (
+            <Link to="/login" className="flex md:hidden items-center">
+          <BsPersonCircle className="rounded-full text-[#ff7900] shadow-xl" size={26}/>
         </Link>
+        )}
       </NavbarBrand>
       
       {/* Design for Desktop View */}
-      <NavbarContent as="div" className="hidden md:flex gap-4" justify="center">
+      <NavbarContent as="div" className="hidden md:flex gap-2" justify="center">
         <NavbarItem className="bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-3">
           <Link  to="/">
             Home
           </Link>
         </NavbarItem>
         <NavbarItem>
-          <Link to="/about" aria-current="page">
-            About
+          <Link to="/categories" aria-current="page">
+            Categories
           </Link>
         </NavbarItem>
         <NavbarItem>
@@ -93,11 +106,6 @@ const Header: React.FC = () => {
         <NavbarItem>
           <Link  to="/wishlist">
             Wishlist
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link  to="/profile">
-            Account
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -123,6 +131,21 @@ const Header: React.FC = () => {
           </Link>
         </NavbarItem>
         <NavbarItem>
+          {user?.name ? (
+            <Link to="/profile" >
+              {user.dp ? (
+              <Avatar src={ user.dp } />
+            ) : (
+              <Avatar src={avatar}/>
+            )}
+            </Link>
+          ): (
+              <Link to='/login'>
+                <BsPersonCircle size={24} className="rounded-full text-[#FF7900]"/>
+              </Link>
+          )}
+        </NavbarItem>
+        <NavbarItem>
           <Link to="/cart">
             <Badge content="70" color="primary">
               <BsCart3 size={24}/>
@@ -146,11 +169,26 @@ const Header: React.FC = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-lg z-20 h-screen md:hidden">
           <div className={isOpen ? "md:hidden absolute top-0 left-0 z-10 w-3/4 bg-white shadow-md h-full px-3 py-4 flex flex-col animate-slideIn overflow-x-auto" : "md:hidden absolute top-0 left-0 z-10 w-3/4 bg-white shadow-md h-full px-3 py-4 flex flex-col animate-slideOut"}>
             <div className="flex sticky md:hidden mb-4 items-center">
-              <Image src={Icon} height={36} width={36} className="rounded-full shadow-xl" />
-              <div className="ms-2">
-                <p className="text-sm font-bold">Wemimoola Olajuwon </p>
-                <p className="text-xs py-0 my-0 font-thin">example@gmail.com</p>
-              </div>
+              {user?.name ? (
+                <div className="flex">
+                  <>
+                    {user.dp ? (
+                      <Avatar src={ user.dp } />
+                    ) : (
+                      <Avatar src={avatar}/>
+                    )}
+                  </>
+                  <div className="ms-2">
+                    <p className="text-sm font-bold">{user.name} </p>
+                    <p className="text-xs py-0 my-0 font-thin">{user.email}</p>
+                  </div>
+                </div>
+              ) : (
+                  <Link to="/login"className="flex items-center">
+                    <BsPersonCircle size={36} className="me-2 text-[#ff7900]" />
+                    <p className="font-bold">Login</p>
+                  </Link>
+              )}
               <BsXLg size={20} className="ms-auto" role="button" onClick={toggleIsOpen}/>
             </div>
             <div className="grid grid-col-1 mt-3 mb-2 gap-3 pb-6">

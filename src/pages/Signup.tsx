@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import useBuyerContext from '../hooks/useBuyerContext';
 import Loading from '../components/Loading';
-import { BsEnvelope, BsEyeFill, BsEyeSlashFill, BsGoogle, BsLock, BsPerson, BsPersonLinesFill, BsPhone } from "react-icons/bs"
-import { Button, Input } from '@nextui-org/react';
+import { BsEnvelope, BsEyeFill, BsEyeSlashFill, BsLock, BsPerson, BsPersonLinesFill, BsPhone } from "react-icons/bs"
+import { Button, Image, Input } from '@nextui-org/react';
+import google from "../assets/image/google.svg"
 import { useState } from "react";
 
 const Signup = () => {
@@ -115,8 +116,8 @@ const Signup = () => {
                 />
                 <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleRegisterSubmit} isLoading={loading}>Register</Button>
                 <p className="text-gray-800 text-center my-3">Or Sign up with other methods</p>
-                <Button disabled radius="full" variant="shadow" className="w-full bg-zinc-400 py-6">
-                    <BsGoogle className="text-2xl text-red-600" />
+                <Button disabled radius="full" variant="shadow" className="w-full bg-zinc-300 py-6">
+                    <Image src={google} width={25} height={25}/>
                     Continue with Google
                 </Button>
 
@@ -223,7 +224,7 @@ const Signup = () => {
                         <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleRegisterSubmit} isLoading={loading}>Register</Button>
                         <p className="text-gray-800 text-center my-3">Or Sign up with other methods</p>
                         <Button disabled radius="full" variant="shadow" className="w-full bg-zinc-400 py-6">
-                            <BsGoogle className="text-2xl text-red-600" />
+                            <Image src={google} width={25} height={25}/>
                             Continue with Google
                         </Button>
 
