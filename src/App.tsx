@@ -12,6 +12,8 @@ import Delivery from './pages/Delivery';
 import OrderCompleted from './pages/OrderCompleted';
 import PersistLogin from './pages/PersistLogin';
 import RequireAuth from './pages/RequireAuth';
+import Missing from './pages/Missing';
+import Home from './pages/Home';
 
 
 
@@ -24,7 +26,8 @@ function App() {
       {/* Routes for Buyers */}
       <Route path='/' element={<BuyerLayout />}>
         {/*@dev: this next line will be changed once the main home screen is done */}
-        <Route index element={<Signup />} />
+        <Route index element={<Home />} />
+        <Route path='signup' element={<Signup />} />
         {/* ... */}
         <Route path="email-otp" element={<Emailotp/>}/>
         <Route path="forget-password" element={<Forgetpassword/>}/>
@@ -45,6 +48,7 @@ function App() {
         </Route>
 
         {/* Catch all or 404 page */}
+        <Route path='*' element={<Missing/>} />
       </Route>
       {/* Customers Details Routes */}
       

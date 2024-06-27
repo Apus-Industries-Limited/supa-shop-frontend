@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-import { nextui } from '@nextui-org/react'
+import { nextui } from '@nextui-org/react';
 export default {
   content: [
     "./index.html",
@@ -9,7 +9,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        mont:["mont"]
+        mont: [ "mont" ],
+        "mont-bold":["mont-bold"]
       },
     },
   },
