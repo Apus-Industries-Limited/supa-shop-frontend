@@ -8,10 +8,10 @@ import "react-toastify/ReactToastify.css"
 const BuyerLayout = () => {
   return (
     <BuyerProvider>
-      <main className="max-h-screen max-w-full font-mont flex flex-col">
+      <main className="h-screen max-w-full font-mont font-semibold flex flex-col">
         <Header />
-        <ToastContainer/>
         <div className="flex-grow overflow-y-auto">
+          <ToastContainer />
           <Outlet />
           <Footer/>
         </div>

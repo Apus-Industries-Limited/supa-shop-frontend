@@ -42,19 +42,19 @@ const Footer = () => {
         <p className="md:text-xl font-bold">Contact Us</p>
         <p>If you have any questions, please contact us at <a href="mailto:joinsupashop@gmail.com">joinsupashop@gmail.com</a></p>
         <div className="mt-3 grid grid-cols-5">
-          <Link to="https://www.instagram.com/joinsupashop" target="_blank">
+          <Link rel="noopener noreferrer" to="https://www.instagram.com/joinsupashop" target="_blank">
             <BsInstagram />
           </Link>
-          <Link to="https://www.facebook.com/p/SupaShop-61558748537592/" target="_blank">
+          <Link rel="noopener noreferrer" to="https://www.facebook.com/p/SupaShop-61558748537592/" target="_blank">
             <BsFacebook />
           </Link>
-          <Link to="https://www.linkedin.com/in/joinsupashop" target="_blank" >
+          <Link rel="noopener noreferrer" to="https://www.linkedin.com/in/joinsupashop" target="_blank" >
             <BsLinkedin />
           </Link>
-          <Link to="https://www.twitter.com/joinsupashop" target="_blank">
+          <Link rel="noopener noreferrer" to="https://www.twitter.com/joinsupashop" target="_blank">
             <BsTwitterX />
           </Link>
-          <Link to="https://www.twitter.com/joinsupashop" target="_blank">
+          <Link rel="noopener noreferrer" to="https://www.tiktok.com/@joinsupashop" target="_blank">
             <BsTiktok />
           </Link>
         </div>

@@ -1,8 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Icon from "../assets/image/6.png"
 import "../styles/customMediaQuery.css";
 import { useState } from "react";
-import { Badge, Button, Image, Input, Navbar, NavbarBrand, NavbarContent, NavbarItem,Avatar } from "@nextui-org/react"
+import { Badge, Button, Image, Input, Navbar, NavbarBrand, NavbarContent, NavbarItem,Avatar, User } from "@nextui-org/react"
 import { BsBell, BsCart3, BsGear, BsList, BsMoon, BsPersonCircle, BsQuestionCircle, BsSearch, BsSunFill, BsXLg } from "react-icons/bs";
 import useBuyerContext from "../hooks/useBuyerContext";
 import avatar from "../assets/image/avatar.jpg";
@@ -10,10 +10,12 @@ import avatar from "../assets/image/avatar.jpg";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const {user} = useBuyerContext()
+  const { user } = useBuyerContext()
+  const {pathname} = useLocation()
 
   const toggleIsOpen = (): void => {
     setIsOpen(!isOpen);
+    console.log(pathname)
   };
 
   const mobileLinks = [
@@ -69,15 +71,7 @@ const Header: React.FC = () => {
         </Link>
         {user?.name ? (
           <Link to="/profile" className="flex md:hidden items-center">
-            {user.dp ? (
-              <Avatar src={ user.dp } />
-            ) : (
-              <Avatar src={avatar}/>
-            )}
-            <div className="ms-1">
-              <p className="text-[1rem]">Hi,<span className="font-bold"> {user.username}</span>
-              </p>
-            </div>
+            <User name={ user.username } description="Let's get you shopping today!" avatarProps={{ src: user.dp? user.dp : avatar  }} />
           </Link>
         ) : (
             <Link to="/login" className="flex md:hidden items-center">
@@ -88,22 +82,22 @@ const Header: React.FC = () => {
       
       {/* Design for Desktop View */}
       <NavbarContent as="div" className="hidden md:flex gap-2" justify="center">
-        <NavbarItem className="bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-3">
+        <NavbarItem className={pathname === "/" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2" : "px-2"}>
           <Link  to="/">
             Home
           </Link>
         </NavbarItem>
-        <NavbarItem>
+        <NavbarItem className={pathname === "/categories" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2" : "px-2"}>
           <Link to="/categories" aria-current="page">
             Categories
           </Link>
         </NavbarItem>
-        <NavbarItem>
-          <Link  to="/shop">
+        <NavbarItem className={pathname === "/shops" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2" : "px-2"}>
+          <Link  to="/shops">
             Shops
           </Link>
         </NavbarItem>
-        <NavbarItem>
+        <NavbarItem className={pathname === "/wishlist" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2" : "px-2"}>
           <Link  to="/wishlist">
             Wishlist
           </Link>
@@ -170,19 +164,7 @@ const Header: React.FC = () => {
           <div className={isOpen ? "md:hidden absolute top-0 left-0 z-10 w-3/4 bg-white shadow-md h-full px-3 py-4 flex flex-col animate-slideIn overflow-x-auto" : "md:hidden absolute top-0 left-0 z-10 w-3/4 bg-white shadow-md h-full px-3 py-4 flex flex-col animate-slideOut"}>
             <div className="flex sticky md:hidden mb-4 items-center">
               {user?.name ? (
-                <div className="flex">
-                  <>
-                    {user.dp ? (
-                      <Avatar src={ user.dp } />
-                    ) : (
-                      <Avatar src={avatar}/>
-                    )}
-                  </>
-                  <div className="ms-2">
-                    <p className="text-sm font-bold">{user.name} </p>
-                    <p className="text-xs py-0 my-0 font-thin">{user.email}</p>
-                  </div>
-                </div>
+                <User name={ user.name } description={user.email} avatarProps={{ src: user.dp? user.dp : avatar  }} />
               ) : (
                   <Link to="/login"className="flex items-center">
                     <BsPersonCircle size={36} className="me-2 text-[#ff7900]" />
@@ -193,7 +175,9 @@ const Header: React.FC = () => {
             </div>
             <div className="grid grid-col-1 mt-3 mb-2 gap-3 pb-6">
               {mobileLinks.map(item => (
-                <Link key={mobileLinks.indexOf(item)} to={item.link} className="p-2 text-sm bg-gray-100 rounded-lg hover:bg-gray-300 hover:font-semibold border-l-3 border-l-[#ff7900]">
+                <Link role="button" onClick={toggleIsOpen} key={mobileLinks.indexOf(item)} to={item.link} className={
+                  item.link === pathname ? "p-2 text-sm bg-gray-100 rounded-lg hover:bg-gray-300 hover:font-semibold border-l-3 border-l-[#ff7900]" : "p-2 text-sm bg-gray-100 rounded-lg hover:bg-gray-300 hover:font-semibold border-l-3 border-l-gray-400" 
+                }>
                   <p className="my-auto">{item.name}</p>
                 </Link>
               ))}
