@@ -25,7 +25,7 @@ const Header: React.FC = () => {
     },
     {
       name: "Home & Furniture",
-      link: "/apparel"
+      link: "/furniture"
     },
     {
       name: "Electronics",
