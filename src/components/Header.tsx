@@ -6,19 +6,19 @@ import cart from "../assets/image/cart.png";
 import { Link } from "react-router-dom";
 import "../styles/customMediaQuery.css";
 import { useState } from "react";
-import { Menu } from "@mui/icons-material";
+import menuBar from "../assets/image/menuBar.png";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(true);
 
   const toggleIsOpen = (): void => {
     setIsOpen(!isOpen);
-    console.log("biiiiii");
   };
 
   return (
-    <div className="h-[13vh] bg-white flex w-screen justify-between items-center px-5">
-      <img src={logo} alt="Logo" className="w-[150px]" />
+    <div className="h-[13vh] bg-white flex flex-row-reverse md:flex-row w-screen justify-between items-center px-5">
+      <img src={cart} alt="" className="flex md:hidden"/>
+      <img src={logo} alt="Logo" className="w-1/2 md:w-[150px]" />
       <div className="flex customfade text-neutral-600 gap-3 ">
         <Link to="/home">Home</Link>
         <Link to="/home">About</Link>
@@ -27,7 +27,7 @@ const Header: React.FC = () => {
         <Link to="/home">Wishlist</Link>
         <Link to="/home">Account</Link>
       </div>
-      <div className="hidden md:flexhidden md:flex justify-between gap-5">
+      <div className="hidden  md:flex justify-between gap-5">
         <div className="relative flex  items-center ">
           <img src={search} alt="" className="absolute left-3" />
           <input
@@ -40,13 +40,10 @@ const Header: React.FC = () => {
         <img src={setting} alt="" />
         <img src={cart} alt="" />
       </div>
-      <div className="flex md:hidden text-neutral-600 ">
-        <Menu onClick={toggleIsOpen} />
-      </div>
-      <div className="absolute w-screen transition duration-300">
+      <div className="absolute w-screen block md:hidden transition duration-300">
         <div
           className={`fixed p-10 bg-white flex flex-col text-neutral-600 gap-8 top-0 ${
-            isOpen ? " right-[-100%]" : "right-0"
+            isOpen ? " left-[-100%]" : "left-0"
           } h-screen w-1/2 transition duration-300`}
         >
           <Close className="text-neutral-600" onClick={toggleIsOpen} />
@@ -67,6 +64,14 @@ const Header: React.FC = () => {
           </Link>
           <Link to="/home">Account</Link>
         </div>
+      </div>
+      <div className="flex  md:hidden text-neutral-600 ">
+        <img
+          src={menuBar}
+          alt="menuBar"
+          onClick={toggleIsOpen}
+          className="w-[30px]"
+        />
       </div>
     </div>
   );
