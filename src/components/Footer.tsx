@@ -8,7 +8,7 @@ const MobileFooter = () => {
   return (
     <footer className="rounded-t-2xl bg-neutral-100 md:hidden">
       {/* Mobile Footer */}
-      <div className="flex justify-evenly md:hidden py-4">
+      <div className="flex justify-evenly md:hidden py-8">
         <Link to="/" className="text-center">
           <BsHouse className="mx-auto text-[#ff7900]" size={20} />
           <p className="text-xs text-center">Home</p>
