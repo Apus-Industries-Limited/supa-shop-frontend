@@ -1,12 +1,15 @@
 import axios from "axios"
 
-const DEV_URL:string = 'https://supa-shop-backend.onrender.com'
+const LOCAL_URL:string = 'http://localhost:3500'
+const DEV_URL: string = 'https://supa-shop-backend.onrender.com'
+
+
 export default axios.create( {
-      baseURL: DEV_URL,
+      baseURL: LOCAL_URL,
 })
 
 export const axiosPrivate = axios.create({
-      baseURL: DEV_URL,
+      baseURL: LOCAL_URL,
       headers: {
             "Content-Type":"application/json"
       }
