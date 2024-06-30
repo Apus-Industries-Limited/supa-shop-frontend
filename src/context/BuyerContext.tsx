@@ -164,9 +164,9 @@ export const BuyerProvider = (props: Props) => {
   const loadProduct = useCallback(async (url:string) => {
     if (!hasMore) return;
       try {
-        setLoading(true);
         const res = await axios.get(`${url}?skip=${skip}`)
-        const fetched = res.data.data
+        console.log(res.data)
+        const fetched = res.data
         setProducts(prev => [...prev, ...fetched]);
         setSkip(prev => prev + fetched.length)
         if (fetched.length < 10) {

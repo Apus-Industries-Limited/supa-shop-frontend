@@ -2,8 +2,10 @@ import profile from "../assets/react.svg"
 import { BsChevronRight, BsEnvelopeFill, BsPersonFill, BsPhoneFill } from "react-icons/bs"
 import { FaInfoCircle } from "react-icons/fa"
 import { FaArrowRightFromBracket, FaBoxOpen, FaCreditCard, FaLocationDot,FaMapLocation, FaUser,FaBell, FaHeadphones } from "react-icons/fa6"
+import useLogout from "../hooks/useLogout"
 
 const Profile = () => {
+  const logOut = useLogout()
   const personal = [
     {
       icon: <FaBoxOpen className="me-2" />,
@@ -82,7 +84,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="w-full text-start">
-          <button className="flex items-center text-lg text-[#ff7900]">
+          <button className="flex items-center text-lg text-[#ff7900]" onClick={logOut}>
             <FaArrowRightFromBracket className=" rotate-180 me-4"/>
             Log Out
           </button>
@@ -129,7 +131,7 @@ const Profile = () => {
           ))}
         </div>
         <div className="mt-5 pb-3">
-          <div role="button" className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-[#ff7900] text-red-500 hover:text-[#eeeeee]">
+          <div role="button" className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-[#ff7900] text-red-500 hover:text-[#eeeeee]" onClick={logOut}>
             <FaArrowRightFromBracket className=" rotate-180 me-4"/>
             Log Out
             <div className="grid ml-auto place-items-center justify-self-end">
