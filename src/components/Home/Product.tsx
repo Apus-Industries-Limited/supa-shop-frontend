@@ -1,25 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useInView } from 'react-intersection-observer';
-import useBuyerContext from '../../hooks/useBuyerContext';
-import { useEffect } from 'react';
+import { useCallback, useEffect,useState } from 'react';
 import { Button, Card, CardBody, CardFooter, Image, Spinner } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
 import { FaCartShopping } from 'react-icons/fa6';
 import { BsHeart, BsStarFill } from 'react-icons/bs';
+import axios from '../../utils/axios';
 
 interface Props{
   title: string | null;
+  url:string 
 }
 
-const Product = ({title}:Props) => {
-  const {/* products, */  hasMore, loadProduct } = useBuyerContext()
-
-  const { ref, inView } = useInView({
-    threshold: 1.0,
-    triggerOnce:false
-  })
-
-  const products = [
+const Product = ({title,url}:Props) => {
+    const [products,setProducts] = useState<any[]>([
     {
       id: 1,
       name: 'Product 1',
@@ -56,15 +50,49 @@ const Product = ({title}:Props) => {
       price: 100,
       image: 'https://picsum.photos/200/300',
     }
-  ]
+  ])
+  const [skip, setSkip] = useState<number>(0);
+  const [hasMore,setHasMore] = useState(true)
+
+    const loadProduct = useCallback(async (url:string) => {
+    if (!hasMore) return;
+      try {
+        const res = await axios.get(`${url}?skip=${skip}`)
+        console.log(res)
+        const fetched = res.data
+        setProducts(prev => [...prev, ...fetched]);
+        setSkip(prev => prev + fetched.length)
+        if (fetched.length < 10) {
+          setHasMore(false);
+        }
+      } catch (error) {
+        console.error(error)
+        setHasMore(false)
+      } 
+    },[skip, hasMore])
+
+
+
+  const { ref, inView } = useInView({
+    threshold: 1.0,
+    triggerOnce:false
+  })
+  
+  useEffect(() => {
+    loadProduct('/product')
+    console.log("loading")
+  },[loadProduct])
   useEffect(() => {
     if (inView && hasMore) {
-      loadProduct("/product");
+      loadProduct(url);
     }
-  },[loadProduct,inView,hasMore])
+  },[loadProduct,inView,hasMore,url])
   return (
-    <div className=' my-4'>
-      <p className='font-mont-bold py-2'>{title}</p>
+    <div className='md:hidden my-4'>
+      <div className="flex justify-between items-center">
+        <p className='font-mont-bold py-2'>{title}</p>
+        <Link to={url} className="font-thin text-xs">See all</Link>
+      </div>
       <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         {products.map((product: any) => (
           

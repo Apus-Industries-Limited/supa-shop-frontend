@@ -2,8 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 import Icon from "../assets/image/6.png"
 import "../styles/customMediaQuery.css";
 import { useState } from "react";
-import { Badge, Button, Image, Input, Navbar, NavbarBrand, NavbarContent, NavbarItem,Avatar, User } from "@nextui-org/react"
-import { BsBell, BsCart3, BsGear, BsList, BsMoon, BsPersonCircle, BsQuestionCircle, BsSearch, BsSunFill, BsXLg } from "react-icons/bs";
+import { Badge, Button, Image, Navbar, NavbarBrand, NavbarContent, NavbarItem,Avatar, User } from "@nextui-org/react"
+import { BsBell, BsCart3, BsList, BsMoon, BsPersonCircle, BsQuestionCircle, BsSearch, BsSunFill, BsXLg } from "react-icons/bs";
 import useBuyerContext from "../hooks/useBuyerContext";
 import avatar from "../assets/image/avatar.jpg";
 
@@ -81,47 +81,39 @@ const Header: React.FC = () => {
       </NavbarBrand>
       
       {/* Design for Desktop View */}
-      <NavbarContent as="div" className="hidden md:flex gap-2" justify="center">
-        <NavbarItem className={pathname === "/" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2" : "px-2"}>
+      <NavbarContent as="div" className="hidden md:flex" justify="center">
+        <NavbarItem className={pathname === "/" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2 underline"  : "px-2 border border-[#ffc999] rounded-full"}>
           <Link  to="/">
             Home
           </Link>
         </NavbarItem>
-        <NavbarItem className={pathname === "/categories" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2" : "px-2"}>
-          <Link to="/categories" aria-current="page">
+        <NavbarItem className={pathname === "/category" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2 underline"  : "px-2 border border-[#ffc999] rounded-full"}>
+          <Link to="/category" aria-current="page">
             Categories
           </Link>
         </NavbarItem>
-        <NavbarItem className={pathname === "/shops" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2" : "px-2"}>
+        <NavbarItem className={pathname === "/shops" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2 underline"  : "px-2 border border-[#ffc999] rounded-full"}>
           <Link  to="/shops">
             Shops
           </Link>
         </NavbarItem>
-        <NavbarItem className={pathname === "/wishlist" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2" : "px-2"}>
+        <NavbarItem className={pathname === "/wishlist" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2 underline"  : "px-2 border border-[#ffc999] rounded-full"}>
           <Link  to="/wishlist">
             Wishlist
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent as="div" className="items-center hidden md:flex" justify="end">
-        <Input classNames={{ 
-          base: "max-w-full sm:max-w-[10rem] h-10",
-            mainWrapper: "h-full",
-            input: "text-small",
-            inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-        }}
-          placeholder="Type to search"
-          size="sm"
-          startContent={
-            <BsSearch size={18}/>
-          }
-          type="search"
-        />
         <NavbarItem>
-          <Link to='/settings'>
-            <div className=" p-1 rounded-full bg-[#FF7900] text-white">
-              <BsGear size={24} />
-            </div>
+          <Link to='/search'>
+            <BsSearch size={24}/>
+          </Link>
+        </NavbarItem>
+        <NavbarItem>
+          <Link to="/cart">
+            <Badge content="70" color="primary">
+              <BsCart3 size={24}/>
+            </Badge>
           </Link>
         </NavbarItem>
         <NavbarItem>
@@ -138,13 +130,6 @@ const Header: React.FC = () => {
                 <BsPersonCircle size={24} className="rounded-full text-[#FF7900]"/>
               </Link>
           )}
-        </NavbarItem>
-        <NavbarItem>
-          <Link to="/cart">
-            <Badge content="70" color="primary">
-              <BsCart3 size={24}/>
-            </Badge>
-          </Link>
         </NavbarItem>
       </NavbarContent>
       {/* Design for Mobile View */}
