@@ -29,6 +29,16 @@ body{
   animation: slideOut 0.5s ease-in-out;
 }
 
+.scroll-container{
+  scroll-behavior: smooth;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scroll-container::-webkit-scrollbar{
+  display: none;
+}
+
 @keyframes slideOut{
   0%{
     transform: translateX(0);

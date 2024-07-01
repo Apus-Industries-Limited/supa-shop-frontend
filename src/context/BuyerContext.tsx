@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { createContext, useCallback, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { FormData } from "../types/Formtypes";
 import axios from "../utils/axios";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -35,9 +35,7 @@ export const BuyerProvider = (props: Props) => {
   const [user, setUser] = useState<object | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const [products,setProducts] = useState<any[]>([])
-  const [skip, setSkip] = useState<number>(0);
-  const [hasMore,setHasMore] = useState(true)
+
 
 
   const toggleVisibility = () => setIsVisible(!isVisible);
@@ -161,31 +159,11 @@ export const BuyerProvider = (props: Props) => {
      * @dev : This logic is to handle infinte scroll
      */
 
-  const loadProduct = useCallback(async (url:string) => {
-    if (!hasMore) return;
-      try {
-        const res = await axios.get(`${url}?skip=${skip}`)
-        console.log(res.data)
-        const fetched = res.data
-        setProducts(prev => [...prev, ...fetched]);
-        setSkip(prev => prev + fetched.length)
-        if (fetched.length < 10) {
-          setHasMore(false);
-        }
-      } catch (error) {
-        console.error(error)
-        setHasMore(false)
-      } 
-    },[skip, hasMore])
 
-  useEffect(() => {
-    loadProduct('/product')
-    console.log("loading")
-  },[loadProduct])
 
 
   return (
-    <BuyerContext.Provider value={{ formData,handleChange, handleLoginSubmit,user,loading,handleRegisterSubmit, handleForgetPassword,back,setUser,persist,setPersist,toggleVisibility,isVisible,products,hasMore,loadProduct}}>
+    <BuyerContext.Provider value={{ formData,handleChange, handleLoginSubmit,user,loading,handleRegisterSubmit, handleForgetPassword,back,setUser,persist,setPersist,toggleVisibility,isVisible}}>
       {props.children}
     </BuyerContext.Provider>
   )
