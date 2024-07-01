@@ -3,7 +3,7 @@ import Icon from "../assets/image/6.png"
 import "../styles/customMediaQuery.css";
 import { useState } from "react";
 import { Badge, Button, Image, Navbar, NavbarBrand, NavbarContent, NavbarItem,Avatar, User } from "@nextui-org/react"
-import { BsBell, BsCart3, BsList, BsMoon, BsPersonCircle, BsQuestionCircle, BsSearch, BsSunFill, BsXLg } from "react-icons/bs";
+import { BsBell, BsCart3, BsList, BsMoon, BsPerson, BsPersonCircle, BsQuestionCircle, BsSearch, BsSunFill, BsXLg } from "react-icons/bs";
 import useBuyerContext from "../hooks/useBuyerContext";
 import avatar from "../assets/image/avatar.jpg";
 
@@ -104,19 +104,19 @@ const Header: React.FC = () => {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent as="div" className="items-center hidden md:flex" justify="end">
-        <NavbarItem>
+        <NavbarItem className="bg-[#ffa14d] rounded-full p-1">
           <Link to='/search'>
-            <BsSearch size={24}/>
+            <BsSearch size={26} className="rounded-full p-1"/>
           </Link>
         </NavbarItem>
-        <NavbarItem>
+        <NavbarItem className="bg-[#ffa14d] rounded-full p-1">
           <Link to="/cart">
-            <Badge content="70" color="primary">
-              <BsCart3 size={24}/>
+            <Badge content="0" color="primary">
+              <BsCart3 size={26} />
             </Badge>
           </Link>
         </NavbarItem>
-        <NavbarItem>
+        <NavbarItem className="bg-[#ffa14d] rounded-full p-1 ms-3">
           {user?.name ? (
             <Link to="/profile" >
               {user.dp ? (
@@ -127,7 +127,7 @@ const Header: React.FC = () => {
             </Link>
           ): (
               <Link to='/login'>
-                <BsPersonCircle size={24} className="rounded-full text-[#FF7900]"/>
+                <BsPerson size={26} className="rounded-full"/>
               </Link>
           )}
         </NavbarItem>
@@ -160,7 +160,7 @@ const Header: React.FC = () => {
             </div>
             <div className="grid grid-col-1 mt-3 mb-2 gap-3 pb-6">
               {mobileLinks.map(item => (
-                <Link role="button" onClick={toggleIsOpen} key={mobileLinks.indexOf(item)} to={item.link} className={
+                <Link role="button" onClick={toggleIsOpen} key={mobileLinks.indexOf(item)} to={`/category/${item.link}`} className={
                   item.link === pathname ? "p-2 text-sm bg-gray-100 rounded-lg hover:bg-gray-300 hover:font-semibold border-l-3 border-l-[#ff7900]" : "p-2 text-sm bg-gray-100 rounded-lg hover:bg-gray-300 hover:font-semibold border-l-3 border-l-gray-400" 
                 }>
                   <p className="my-auto">{item.name}</p>

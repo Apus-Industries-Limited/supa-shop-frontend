@@ -36,7 +36,7 @@ const TopSearch = () => {
     }
   ]
   return (
-    <div className="my-3">
+    <div className="my-3 hidden md:block">
       <p className='font-mont-bold py-2'>Top Search</p>
       <div className="grid grid-cols-5 gap-2">
         {products.map(product => (
