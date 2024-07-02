@@ -15,7 +15,6 @@ const Header: React.FC = () => {
 
   const toggleIsOpen = (): void => {
     setIsOpen(!isOpen);
-    console.log(pathname)
   };
 
   const mobileLinks = [
@@ -93,7 +92,7 @@ const Header: React.FC = () => {
           </Link>
         </NavbarItem>
         <NavbarItem className={pathname === "/shops" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2 underline"  : "px-2 border border-[#ffc999] rounded-full"}>
-          <Link  to="/shops">
+          <Link  to="/shop">
             Shops
           </Link>
         </NavbarItem>
@@ -151,7 +150,7 @@ const Header: React.FC = () => {
               {user?.name ? (
                 <User name={ user.name } description={user.email} avatarProps={{ src: user.dp? user.dp : avatar  }} />
               ) : (
-                  <Link to="/login"className="flex items-center">
+                  <Link to="/login" onClick={toggleIsOpen}  className="flex items-center">
                     <BsPersonCircle size={36} className="me-2 text-[#ff7900]" />
                     <p className="font-bold">Login</p>
                   </Link>
@@ -160,7 +159,7 @@ const Header: React.FC = () => {
             </div>
             <div className="grid grid-col-1 mt-3 mb-2 gap-3 pb-6">
               {mobileLinks.map(item => (
-                <Link role="button" onClick={toggleIsOpen} key={mobileLinks.indexOf(item)} to={`/category/${item.link}`} className={
+                <Link role="button" onClick={toggleIsOpen} key={mobileLinks.indexOf(item)} to={`/category${item.link}`} className={
                   item.link === pathname ? "p-2 text-sm bg-gray-100 rounded-lg hover:bg-gray-300 hover:font-semibold border-l-3 border-l-[#ff7900]" : "p-2 text-sm bg-gray-100 rounded-lg hover:bg-gray-300 hover:font-semibold border-l-3 border-l-gray-400" 
                 }>
                   <p className="my-auto">{item.name}</p>
