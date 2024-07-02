@@ -64,6 +64,31 @@ const HotDeals = () => {
       image: 'https://picsum.photos/200/300',
         },
     
+    {
+      id: 9,
+      name: 'Product 6',
+      price: 100,
+      image: 'https://picsum.photos/200/300',
+        },
+    {
+      id: 9,
+      name: 'Product 6',
+      price: 100,
+      image: 'https://picsum.photos/200/300',
+        },
+    {
+      id: 9,
+      name: 'Product 6',
+      price: 100,
+      image: 'https://picsum.photos/200/300',
+        },
+    {
+      id: 9,
+      name: 'Product 6',
+      price: 100,
+      image: 'https://picsum.photos/200/300',
+        },
+    
     ])
   
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -114,7 +139,7 @@ const HotDeals = () => {
     }
   },[loadProduct,inView,hasMore])
   return (
-    <section className='hidden md:block my-2'>
+    <section className='my-2'>
       <p className='font-mont-bold py-2'>Hot Deals</p>
       <div className="flex items-center">
         <button onClick={() => scroll("left")} className='hover:bg-primary hover:text-white rounded-full text-primary me-2'>

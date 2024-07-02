@@ -1,7 +1,7 @@
-import { BsArrowDown, BsCart3, BsEnvelope, BsFacebook, BsHeart, BsHouse, BsInstagram, BsLinkedin, BsPersonCircle, BsSearch, BsTiktok, BsTwitterX } from "react-icons/bs";
+import { BsArrowDown, BsCart3, BsEnvelope, BsFacebook, BsHeart, BsHouse, BsInstagram, BsLinkedin, BsPersonCircle, BsSend, BsShop, BsTiktok, BsTwitterX } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import Icon from "../assets/image/logo4.png"
-import { Avatar, Image, Input } from "@nextui-org/react";
+import { Avatar, Button, Image, Input } from "@nextui-org/react";
 import useBuyerContext from "../hooks/useBuyerContext";
 import avatar from "../assets/image/avatar.jpg";
 
@@ -16,15 +16,15 @@ const MobileFooter = () => {
           <BsHouse className="mx-auto text-[#ff7900]" size={25} />
           <p className="text-xs text-center">Home</p>
         </Link>
-        <Link to="/" className="text-center">
-          <BsSearch className="mx-auto text-[#ff7900]" size={25} />
-          <p className="text-xs text-center">Categories</p>
+        <Link to="/shop" className="text-center">
+          <BsShop className="mx-auto text-[#ff7900]" size={25} />
+          <p className="text-xs text-center">Shops</p>
         </Link>
-        <Link to="/" className="text-center">
+        <Link to="/wishlist" className="text-center">
           <BsHeart className="mx-auto text-[#ff7900]" size={25} />
           <p className="text-xs text-center">Saved</p>
         </Link>
-        <Link to="/" className="text-center">
+        <Link to="/cart" className="text-center">
           <BsCart3 className="mx-auto text-[#ff7900]" size={25} />
           <p className="text-xs text-center">Cart</p>
         </Link>
@@ -108,7 +108,7 @@ const Footer = () => {
             <BsArrowDown size={30}/>
           </div>
           <p className="uppercase text-end mb-4">SUBSCRIBE TO OUR NEWS LETTER FOR QUICK NOTIFICATION FROM YOUR FAVORITES</p>
-          <Input type="email" variant="underlined" placeholder="Enter your email" color="primary" endContent={ <BsEnvelope size={20}/> } />
+          <Input type="email" variant="underlined" placeholder="Enter your email" color="primary" startContent={ <BsEnvelope size={30} color="#ff7900"/> } endContent={<Button size="sm" color="primary"><BsSend size={20}/></Button>} />
         </div>
       </div>
     </footer>

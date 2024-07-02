@@ -29,6 +29,10 @@ body{
   animation: slideOut 0.5s ease-in-out;
 }
 
+.animate-slideOutReverse{
+  animation: slideOutRevese 0.5s ease-in-out;
+}
+
 .scroll-container{
   scroll-behavior: smooth;
   -ms-overflow-style: none;
@@ -45,6 +49,15 @@ body{
     }
     100%{
       transform: translateX(-100%);
+      }
+}
+
+@keyframes slideOutRevese {
+  0%{
+    transform: translateX(100%);
+    }
+    100%{
+      transform: translateX(0);
       }
 }
 

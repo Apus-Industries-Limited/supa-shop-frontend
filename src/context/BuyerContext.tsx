@@ -55,7 +55,7 @@ export const BuyerProvider = (props: Props) => {
         const response = await axios.post(`/auth/login`, formData,  {
             headers: {
               'Content-Type': 'application/json; charset=UTF-8'
-            },
+            },withCredentials:true
         });
       setUser(response.data?.user)
       toastMsg('success','Login Successful')
@@ -111,7 +111,7 @@ export const BuyerProvider = (props: Props) => {
       const response = await axios.post(`/auth/register`, formData,  {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
-        },
+        },withCredentials:true
     });
       toastMsg("success", 'Registration Successfully')
       console.log(response.data)

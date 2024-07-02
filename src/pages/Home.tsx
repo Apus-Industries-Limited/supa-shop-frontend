@@ -7,7 +7,7 @@ import TopSearch from "../components/Home/TopSearch"
 
 const Home = () => {
   return (
-    <div className="my-4 px-2 md:px-4 lg:px-8 mx-auto bg-gray-200">
+    <div className="my-4 px-2 md:px-4 lg:px-8 mx-auto">
       <Hero />
       {/* Desktop Designs */}
       <HotDeals />
