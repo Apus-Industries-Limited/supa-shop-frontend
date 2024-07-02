@@ -8,7 +8,7 @@ const vitePWA = VitePWA( {
   "name": "SupaShop Ecommerce",
   "short_name": "SupaShop",
   "description": "E-commerce platform bringing accessibility and transparency to your doorstep 🧡",
-  "theme_color": "#000000",
+  "theme_color": "#ffffff",
   "icons": [
     {
       "src": "/SupaShop.png",
