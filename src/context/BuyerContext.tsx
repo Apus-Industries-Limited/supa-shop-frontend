@@ -129,10 +129,10 @@ export const BuyerProvider = (props: Props) => {
         toastMsg("error", 'No server response')
       } else if (err.response?.status === 409) {
         toastMsg("error", 'Email already exist')
-      } else if (err.response?.status) { 
+      } else if (err.response?.status === 400) { 
         toastMsg("error", 'All fields must be entered')
       } else{
-        toastMsg("error",'Registration failed. pls try again or contact the admin support')
+        toastMsg("error",`Registration failed. pls try again or contact the admin support \n err.message`)
       } // Handle error
     } finally {
       setLoading(false)
