@@ -71,7 +71,7 @@ const Signin = () => {
                     Continue with Google
                 </Button>
 
-                <p className="text-center my-3">Dont't have an account? <Link to="/" className="text-[#FF7900]">Sign up</Link></p>
+                <p className="text-center my-3">Dont't have an account? <Link to="/signup" className="text-[#FF7900]">Sign up</Link></p>
             </div>
             <Loading/>
         </div>
