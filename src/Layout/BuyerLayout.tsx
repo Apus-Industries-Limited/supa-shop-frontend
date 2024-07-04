@@ -1,18 +1,21 @@
 import { Outlet } from "react-router-dom";
 import { BuyerProvider } from "../context/BuyerContext";
 import Header from "../components/Header";
-import Footer from "../components/Footer";
+import Footer, {MobileFooter} from "../components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/ReactToastify.css"
 
 const BuyerLayout = () => {
   return (
     <BuyerProvider>
-      <main className="bg-[#eeeeee] text-[#2a2a2a] dark:bg-[#2a2a2a] dark:text-[#eeeeee] min-h-screen max-w-full overflow-hidden">
+      <main className="h-screen max-w-full font-mont font-semibold flex flex-col">
         <Header />
-        <ToastContainer/>
-        <Outlet/>
-        <Footer/>
+        <div className="flex-grow overflow-y-auto">
+          <ToastContainer />
+          <Outlet />
+          <Footer/>
+        </div>
+        <MobileFooter />
       </main>
     </BuyerProvider>
   )

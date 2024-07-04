@@ -2,8 +2,6 @@ import profile from "../assets/react.svg"
 import { BsChevronRight, BsEnvelopeFill, BsPersonFill, BsPhoneFill } from "react-icons/bs"
 import { FaInfoCircle } from "react-icons/fa"
 import { FaArrowRightFromBracket, FaBoxOpen, FaCreditCard, FaLocationDot,FaMapLocation, FaUser,FaBell, FaHeadphones } from "react-icons/fa6"
-import MobileHeader from "../components/MobileHeader"
-import Header from "../components/Header"
 
 const Profile = () => {
   const personal = [
@@ -41,8 +39,6 @@ const Profile = () => {
   ]
   return (
     <section className="">
-      <Header/>
-      <MobileHeader title={"Profile"}/>
       <div className="container hidden md:px-10 md:flex flex-col justify-center mx-auto items-center">
         <div className="flex justify-between items-center w-full">
           <div className="flex">

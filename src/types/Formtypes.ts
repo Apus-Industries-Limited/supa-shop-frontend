@@ -22,12 +22,12 @@ export interface RestPasswordFormData {
 }
 
 export interface FormData{
-    name: string | null;
-    email: string | null;
-    phone_number: string | null;
-    username: string | null;
-    password: string | null;
-    confirmpassword: string | null;
+    name: string;
+    email: string;
+    phone_number: string;
+    username: string;
+    password: string;
+    confirmpassword: string;
 }
 
 

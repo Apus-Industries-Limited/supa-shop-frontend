@@ -3,7 +3,7 @@ import Emailotp from './pages/Emailotp';
 import Forgetpassword from './pages/Forgetpassword';
 import Newpassword from './pages/Newpassword';
 import Signup from './pages/Signup';
-import Signin2 from './pages/Signin2';
+import Signin from './pages/Signin';
 import BuyerLayout from './Layout/BuyerLayout';
 import Profile from './pages/Profile';
 import Address from './pages/Address'
@@ -12,6 +12,8 @@ import Delivery from './pages/Delivery';
 import OrderCompleted from './pages/OrderCompleted';
 import PersistLogin from './pages/PersistLogin';
 import RequireAuth from './pages/RequireAuth';
+import Missing from './pages/Missing';
+import Home from './pages/Home';
 
 
 
@@ -24,12 +26,13 @@ function App() {
       {/* Routes for Buyers */}
       <Route path='/' element={<BuyerLayout />}>
         {/*@dev: this next line will be changed once the main home screen is done */}
-        <Route index element={<Signup />} />
+        <Route index element={<Home />} />
+        <Route path='signup' element={<Signup />} />
         {/* ... */}
         <Route path="email-otp" element={<Emailotp/>}/>
         <Route path="forget-password" element={<Forgetpassword/>}/>
         <Route path="update-password" element={<Newpassword/>}/>
-        <Route path="login" element={<Signin2 />}/>
+        <Route path="login" element={<Signin />}/>
         <Route path='profile' element={<Profile />} />
         
         {/*
@@ -45,8 +48,10 @@ function App() {
         </Route>
 
         {/* Catch all or 404 page */}
+        <Route path='*' element={<Missing/>} />
       </Route>
       {/* Customers Details Routes */}
+      
       
     </Routes>
   )
