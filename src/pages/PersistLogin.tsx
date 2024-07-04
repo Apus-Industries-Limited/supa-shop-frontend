@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import useBuyerContext from "../hooks/useBuyerContext"
 import useRefreshToken from "../hooks/useRefreshToken"
 import { Outlet } from "react-router-dom"
+import { Spinner } from "@nextui-org/react"
 
 
 const PersistLogin = () => {
@@ -10,6 +11,7 @@ const PersistLogin = () => {
   const [loading, setLoading] = useState<boolean>(true)
   
   useEffect(() => {
+    
     const verifyRefreshToken = async () => { 
       try {
         await refresh()
@@ -28,7 +30,9 @@ const PersistLogin = () => {
       {!persist ?
         <Outlet /> :
         loading ? 
-          <p>Loading</p>
+          <div className="flex justify-center items-center h-screen w-full">
+            <Spinner size="lg" color="primary"/>
+          </div>
           :
           <Outlet/>
     }

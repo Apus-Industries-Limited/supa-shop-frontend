@@ -37,6 +37,7 @@ export const BuyerProvider = (props: Props) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
 
+
   const toggleVisibility = () => setIsVisible(!isVisible);
   const [persist, setPersist] = useState<boolean | null>(() => {
     const storedValue = localStorage.getItem('persist');
@@ -54,7 +55,7 @@ export const BuyerProvider = (props: Props) => {
         const response = await axios.post(`/auth/login`, formData,  {
             headers: {
               'Content-Type': 'application/json; charset=UTF-8'
-            },
+            },withCredentials:true
         });
       setUser(response.data?.user)
       toastMsg('success','Login Successful')
@@ -110,7 +111,7 @@ export const BuyerProvider = (props: Props) => {
       const response = await axios.post(`/auth/register`, formData,  {
         headers: {
           'Content-Type': 'application/json; charset=UTF-8'
-        },
+        },withCredentials:true
     });
       toastMsg("success", 'Registration Successfully')
       console.log(response.data)
@@ -128,10 +129,10 @@ export const BuyerProvider = (props: Props) => {
         toastMsg("error", 'No server response')
       } else if (err.response?.status === 409) {
         toastMsg("error", 'Email already exist')
-      } else if (err.response?.status) { 
+      } else if (err.response?.status === 400) { 
         toastMsg("error", 'All fields must be entered')
       } else{
-        toastMsg("error",'Registration failed. pls try again or contact the admin support')
+        toastMsg("error",`Registration failed. pls try again or contact the admin support \n err.message`)
       } // Handle error
     } finally {
       setLoading(false)
@@ -153,6 +154,12 @@ export const BuyerProvider = (props: Props) => {
             toastMsg("error",errMsg) // Handle error
         }
     }; 
+
+    /**
+     * @dev : This logic is to handle infinte scroll
+     */
+
+
 
 
   return (

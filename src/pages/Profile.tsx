@@ -1,9 +1,14 @@
-import profile from "../assets/react.svg"
+import profile from "../assets/image/avatar.jpg"
 import { BsChevronRight, BsEnvelopeFill, BsPersonFill, BsPhoneFill } from "react-icons/bs"
 import { FaInfoCircle } from "react-icons/fa"
 import { FaArrowRightFromBracket, FaBoxOpen, FaCreditCard, FaLocationDot,FaMapLocation, FaUser,FaBell, FaHeadphones } from "react-icons/fa6"
+import useLogout from "../hooks/useLogout"
+import useBuyerContext from "../hooks/useBuyerContext"
+import { User } from "@nextui-org/react"
 
 const Profile = () => {
+  const {user} = useBuyerContext()
+  const logOut = useLogout()
   const personal = [
     {
       icon: <FaBoxOpen className="me-2" />,
@@ -39,50 +44,44 @@ const Profile = () => {
   ]
   return (
     <section className="">
-      <div className="container hidden md:px-10 md:flex flex-col justify-center mx-auto items-center">
+      <div className="container hidden md:px-10 md:flex flex-col justify-center mx-auto items-center min-h-[60dvh]">
         <div className="flex justify-between items-center w-full">
-          <div className="flex">
-            <img src={profile} alt="User profile" className="me-2" width={50} height={50} />
-            <div>
-              <p className="text-2xl text-[#ff7900] dark:text-[#ffa14d]">Buyers name</p>
-              <p className="text-small">online</p>
-            </div>
-          </div>
-          <p className="text-4xl capitalize text-[#ff7900] dark:text-[#ffa14d]">About me</p>
+          <User name={ user.name }  description="Online" avatarProps={{ src: user.dp? user.dp : profile  }}/>
+          <p className="text-4xl capitalize text-[#ff7900]">About me</p>
           <button className="bg-[#ff7900]  py-2 px-4 rounded-lg font-bold text-[#eeeeee] hover:bg-[#b35500]">Edit profile</button>
         </div>
         <div className=" container mx-auto grid grid-cols-2 gap-10 my-32 align-middle px-16">
           <div className="flex items-center">
-            <BsPersonFill className="bg-[#ff7900]  dark:text-[#fefefe] text-[#eeeeee] w-12 h-12 p-2 rounded-md block me-3" />
+            <BsPersonFill size={40} className="bg-primary text-white p-2 me-2 rounded-lg" />
             <div>
-              <p className="text-lg font-bold">@buyer username</p>
-              <p className="text-small font-thin capitalize">username</p>
+              <p className="text-lg font-bold">{user?.username}</p>
+              <p className="text-small font-thin capitalize text-gray-400">username</p>
             </div>
           </div>
           <div className="flex items-center">
-            <BsEnvelopeFill className="bg-[#ff7900]  dark:text-[#fefefe] text-[#eeeeee] w-12 h-12 p-2 rounded-md block me-3" />
+            <BsEnvelopeFill size={40} className="bg-primary text-white p-2 me-2 rounded-lg" />
             <div>
-              <p className="text-lg font-bold">example@gmail.com</p>
-              <p className="text-small font-thin capitalize">E-mail Address</p>
+              <p className="text-lg font-bold">{user?.email}</p>
+              <p className="text-small font-thin capitalize text-gray-400">E-mail Address</p>
             </div>
           </div>
           <div className="flex items-center">
-            <BsPhoneFill className="bg-[#ff7900]  dark:text-[#fefefe] text-[#eeeeee] w-12 h-12 p-2 rounded-md block me-3" />
+            <BsPhoneFill size={40} className="bg-primary text-white p-2 me-2 rounded-lg" />
             <div>
-              <p className="text-lg font-bold">+123-456-7890</p>
-              <p className="text-small font-thin capitalize">phone number</p>
+              <p className="text-lg font-bold">{ user?.phone_number }</p>
+              <p className="text-small font-thin capitalize text-gray-400">phone number</p>
             </div>
           </div>
           <div className="flex items-center">
-            <FaLocationDot className="bg-[#ff7900]  dark:text-[#fefefe] text-[#eeeeee] w-12 h-12 p-2 rounded-md block me-3" />
+            <FaLocationDot size={40} className="bg-primary text-white p-2 me-2 rounded-lg" />
             <div>
-              <p className="text-lg font-bold">123, somewhere on earth, earth,123456</p>
-              <p className="text-small font-thin capitalize">Address</p>
+              <p className="text-lg font-bold">{`Test Address`}</p>
+              <p className="text-small font-thin capitalize text-gray-400">Address</p>
             </div>
           </div>
         </div>
         <div className="w-full text-start">
-          <button className="flex items-center text-lg text-[#ff7900]">
+          <button className="flex items-center text-lg text-[#ff7900]" onClick={logOut}>
             <FaArrowRightFromBracket className=" rotate-180 me-4"/>
             Log Out
           </button>
@@ -129,7 +128,7 @@ const Profile = () => {
           ))}
         </div>
         <div className="mt-5 pb-3">
-          <div role="button" className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-[#ff7900] text-red-500 hover:text-[#eeeeee]">
+          <div role="button" className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-[#ff7900] text-red-500 hover:text-[#eeeeee]" onClick={logOut}>
             <FaArrowRightFromBracket className=" rotate-180 me-4"/>
             Log Out
             <div className="grid ml-auto place-items-center justify-self-end">
