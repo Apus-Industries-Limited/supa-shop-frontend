@@ -61,7 +61,7 @@ const Newpassword: React.FC = () => {
 
 
     return (
-        <div className=" mx-auto m-4 container bg-neutral-50 rounded-md py-8 px-6 shadow-xl">
+        <div className=" mx-auto m-4 container bg-neutral-50 rounded-md py-8 px-6 shadow-xl min-h-[80dvh]">
             <BackButton />
             <div className="p-2 mt-10 border-3 border-[#FF7900] rounded-2xl md:p-6 grid grid-cols-1 mx-auto gap-4 md:w-3/5 lg:w-1/2">
                 <p className=" text-2xl font-bold mt-0 text-center">Reset Password</p>
