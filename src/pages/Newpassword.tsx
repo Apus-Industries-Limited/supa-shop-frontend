@@ -2,14 +2,16 @@
 import React, {useState} from 'react';
 import { Link } from "react-router-dom";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'
+import axios from '../utils/axios';
+import { useNavigate,useLocation } from 'react-router-dom';
+import { toastMsg } from '../utils/toast'
 
 
 const Newpassword: React.FC = () => {
+const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const token = queryParams.get('token');
 
-    const API_URL = 'https://supa-shop-backend.onrender.com'; 
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState<string | null>(null);
@@ -24,23 +26,26 @@ const Newpassword: React.FC = () => {
                 setError('Passwords do not match');
                 return;
             }
+            if(!token){
+                toastMsg("error","Invalid token")
+            }
     
             try {
-                const response = await axios.post(`${API_URL}/auth/reset-password`, { password }, {
+                const response = await axios.post(`/auth/reset-password?token=${token}`, { password }, {
                     headers: {
                         'Content-Type': 'application/json; charset=UTF-8'
-                    },
-                    method: 'POST',
+                    }
                 });
-                if (response.status === 200){
-                    toast.success('Password Reset')
-                }
+                toastMsg("success",response.data.message)
                 navigate('/Signin')// Redirect to signin page
             } catch (error:any) {
-                toast.error(error.response.data); // Handle error
+                toastMsg("error",error.response.data); // Handle error
                 setError('An error occurred. Please try again.');
+            }finally{
+                setPassword("")
+                setConfirmPassword("")
             }
-        };    
+        };     
 
 
     return (
