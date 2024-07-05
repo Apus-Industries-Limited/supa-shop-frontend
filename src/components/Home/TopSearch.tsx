@@ -1,40 +1,10 @@
 import { Card, CardFooter } from "@nextui-org/react"
 import { BsArrowUpRight } from "react-icons/bs"
 import { Link } from "react-router-dom"
+import { RECENT_SEARCH } from "../../utils/conatant"
 
 const TopSearch = () => {
-  const products = [
-    {
-      id: 1,
-      name: 'fashion',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 2,
-      name: 'gadget',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 3,
-      name: 'shoes',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 4,
-      name: 'accessories',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 5,
-      name: 'grocceries',
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 6,
-      name: 'perfume',
-      image: 'https://picsum.photos/200/300',
-    }
-  ]
+  const products = RECENT_SEARCH
   return (
     <div className="my-3 hidden md:block">
       <p className='font-mont-bold py-2'>Top Search</p>

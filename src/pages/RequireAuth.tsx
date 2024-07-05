@@ -5,7 +5,7 @@ const RequireAuth = () => {
   const location = useLocation();
   const { user } = useBuyerContext();
   return (
-    user ? <Outlet /> :
+    user?.accessToken ? <Outlet /> :
       <Navigate to="/login" state={{ from : location }} replace/>
   )
 }

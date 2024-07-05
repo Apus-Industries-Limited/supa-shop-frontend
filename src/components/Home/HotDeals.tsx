@@ -6,90 +6,10 @@ import { Link } from 'react-router-dom';
 import { FaCartShopping } from 'react-icons/fa6';
 import { BsArrowLeftCircle, BsArrowRightCircle, BsHeart, BsStarFill } from 'react-icons/bs';
 import axios from '../../utils/axios';
+import { PRODUCTS } from '../../utils/conatant';
 
 const HotDeals = () => {
-  const [products,setProducts] = useState<any[]>([
-    {
-      id: 1,
-      name: 'Product 1',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 3,
-      name: 'Product 3',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 4,
-      name: 'Product 4',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 5,
-      name: 'Product 5',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 6,
-      name: 'Product 6',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 7,
-      name: 'Product 4',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 8,
-      name: 'Product 5',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 9,
-      name: 'Product 6',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-        },
-    
-    {
-      id: 9,
-      name: 'Product 6',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-        },
-    {
-      id: 9,
-      name: 'Product 6',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-        },
-    {
-      id: 9,
-      name: 'Product 6',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-        },
-    {
-      id: 9,
-      name: 'Product 6',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-        },
-    
-    ])
+  const [products,setProducts] = useState<any[]>(PRODUCTS)
   
   const scrollRef = useRef<HTMLDivElement>(null);
   const scroll = (direction: "left" | "right") => {
@@ -141,11 +61,11 @@ const HotDeals = () => {
   return (
     <section className='my-2'>
       <p className='font-mont-bold py-2'>Hot Deals</p>
-      <div className="flex items-center">
-        <button onClick={() => scroll("left")} className='hover:bg-primary hover:text-white rounded-full text-primary me-2'>
+      <div className="relative flex items-center py-5">
+        <button onClick={() => scroll("left")} className='absolute top-1/2 z-20 left-0  hover:text-white rounded-full  me-2 bg-white text-primary hover:bg-primary'>
           <BsArrowLeftCircle size={36}/>
         </button>
-        <div className="scroll-container flex overflow-x-auto" ref={scrollRef}>
+        <div className="scroll-container relative flex overflow-x-auto" ref={scrollRef}>
           <div className="flex">
             {products.map(product => (
             <div key={product.id} className='me-8'>
@@ -192,7 +112,7 @@ const HotDeals = () => {
       </div> : null}
           </div>
         </div>
-        <button onClick={() => scroll("right")} className='hover:bg-primary hover:text-white rounded-full text-primary ms-2'>
+        <button className="hover:bg-primary hover:text-white rounded-full bg-white text-primary absolute top-1/2 z-20 right-0" onClick={() => scroll("right")}>
           <BsArrowRightCircle size={36}/>
         </button>
       </div>
