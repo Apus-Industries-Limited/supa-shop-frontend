@@ -4,14 +4,14 @@ import { FormData } from "../types/Formtypes";
 import axios from "../utils/axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toastMsg } from "../utils/toast";
+import { EMAIL_REGEX, PWD_REGEX } from "../utils/conatant";
 
 
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const BuyerContext = createContext<null | any>({})
 
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%.,;]).{8,24}$/
-const EMAIL_REGEX = /^[a-zA-z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
 interface Props {
   children: React.ReactNode
 }
@@ -142,16 +142,20 @@ export const BuyerProvider = (props: Props) => {
   const handleForgetPassword = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
+          setLoading(true)
             const response = await axios.post(`/auth/forgot-password`, formData,  {
                 headers: {
-                    'Content-Type': 'application/json; charset=UTF-8'
+                    'Content-Type': 'application/json'
                 }
             });
-          console.log(response.data,); // Handle success
+          console.log(response.data); // Handle success
+          toastMsg("success","Recovery link has been sent")
           navigate('login')
         } catch (error:any) {
           const errMsg: string|any = error.message
             toastMsg("error",errMsg) // Handle error
+        } finally {
+          setLoading(false)
         }
     }; 
 

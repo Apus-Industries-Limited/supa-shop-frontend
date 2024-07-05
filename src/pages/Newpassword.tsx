@@ -1,92 +1,118 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, {useState} from 'react';
-import { Link } from "react-router-dom";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import { useState } from 'react';
 import axios from '../utils/axios';
 import { useNavigate,useLocation } from 'react-router-dom';
 import { toastMsg } from '../utils/toast'
+import { Button, Input } from '@nextui-org/react';
+import BackButton from '../components/BackButton';
+import Loading from '../components/Loading';
+import { BsEyeFill, BsEyeSlashFill, BsLock } from 'react-icons/bs';
+import { PWD_REGEX } from '../utils/conatant';
 
 
 const Newpassword: React.FC = () => {
-const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
-  const token = queryParams.get('token');
-
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const token = queryParams.get('token');
+    const [isVisible, setIsVisible] = useState<boolean>(false)
+    const [confirmVisible, setConfirmVisible] = useState<boolean>(false)
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [error, setError] = useState<string | null>(null);
     const navigate = useNavigate();
+    const [loading,setLoading] = useState<boolean>(false)
+
+    const toggleVisibility = () => setIsVisible(!isVisible);
+    const toggle = () => setConfirmVisible(!confirmVisible)
     
 
 // const handleSumbit handle the submit button and compare the confirm password and password
 
-        const handleSubmit = async (e: React.FormEvent) => {
-            e.preventDefault();
-            if (password !== confirmPassword) {
-                setError('Passwords do not match');
-                return;
-            }
-            if(!token){
-                toastMsg("error","Invalid token")
-            }
-    
-            try {
-                const response = await axios.post(`/auth/reset-password?token=${token}`, { password }, {
-                    headers: {
-                        'Content-Type': 'application/json; charset=UTF-8'
-                    }
-                });
-                toastMsg("success",response.data.message)
-                navigate('/Signin')// Redirect to signin page
-            } catch (error:any) {
-                toastMsg("error",error.response.data); // Handle error
-                setError('An error occurred. Please try again.');
-            }finally{
-                setPassword("")
-                setConfirmPassword("")
-            }
-        };     
+    const handleSubmit = async () => {
+        const v2 = PWD_REGEX.test(password);
+        if (!v2) {
+            toastMsg("error", 'Password must be 8 to 24 characters long which must include 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character');
+            return;
+        }
+        if (password !== confirmPassword) {
+            toastMsg("error",'Passwords do not match');
+            return;
+        }
+        if(!token){
+            toastMsg("error","Invalid token")
+        }
+
+        try {
+            setLoading(true)
+            const response = await axios.post(`/auth/reset-password?token=${token}`, { password }, {
+                headers: {
+                    'Content-Type': 'application/json; charset=UTF-8'
+                }
+            });
+            toastMsg("success",response.data.message)
+            navigate('/login')// Redirect to signin page
+        } catch (error:any) {
+            toastMsg("error",error.response.data); // Handle error
+        }finally{
+            setPassword("")
+            setConfirmPassword("")
+            setLoading(false)
+        }
+    };     
 
 
     return (
-        <div>
-            <div className='sm:w-[430px] sm:h-[932px] lg:w-full md:w-[910px] md:h-[1390px]  lg:h-[1024px]  flex  flex-row sm:flex sm:flex-col sm:space-x-0 font-light lg:space-x-8 bg-[#FF7900] p-16'>
-                <div className=' font-normal flex item-start m-5'>
-                    <Link to={'/Forgetpassword'} className='text-[20px] sm:text-[15px]  hover:bg-[#c37046] bg-[#B35500] rounded-[20px] p-2 text-white font-["Mont"]' ><span><ArrowBackIosNewIcon/></span> Back</Link>
-                </div>
-                <div className='sm:w-[300px] sm:h-[486px] lg:w-[1160px]  lg:h-[664px] bg-[#FFFFFF] m-[30px] md:w-[720px] flex-shrink-0 rounded-[32px] flex md:space-x-12 md:items-center p-[0px] sm:flex-col md:flex-col lg:flex-col  items-center '>
-                    <span><h1 className='text-[#1E1E1E] text-[24px]  text-center font-black font-["Mont"] w-[83] h-[31] mt-9'>Forget Password?</h1><br/>
-                        <p  className='text-[#1E1E1E] text-[20px] font-light font-["Mont"] w-[136] h-[18]'>Please set a new password</p>
-                    </span>
-
-                    <div className='mt-5'>
-                    <form method='POST'>
-                        <span className=''>
-                            <label className='text-[#1E1E1E] font-bold text-[14px]'>New Password</label><br></br>
-                            <input type='password' placeholder='**********' name='password' 
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)} 
-                            className=' border-none sm:mb-2 sm:w-[250px] sm:h-[38px] focus:outline-none md:w-[350px] lg:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/>
-                        </span><br></br>
-
-                        <label className='text-[#1E1E1E] font-bold text-[14px]'>Confirm Password</label><br/>
-                        <input type='password' name='confirmPassword' 
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)} 
-                        placeholder='**********'
-                         className=' border-none sm:mb-2 sm:w-[250px] sm:h-[38px] focus:outline-none md:w-[350px] lg:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/><br/>
-                        
-                        {error && <p style={{ color: error === 'Passwords match' ? 'green' : 'red'}}>{error}</p>}
-
-                        <button type='submit'
-                        onSubmit={handleSubmit}
-                        className=' sm:mt-8 sm:w-[250px] hover:bg-[#c37046] sm:h-[52px] lg:w-[442px] md:w-[350px] md:h-[60px]  text-center p-[8px] bg-[#FF7900] rounded-[10px] font-medium md:text-[18px] sm:text-[10px] text-[#FFFFFF]'>Continue</button> 
-                    </form>
-                    </div>
-                </div>
+        <div className=" mx-auto m-4 container bg-neutral-50 rounded-md py-8 px-6 shadow-xl">
+            <BackButton />
+            <div className="p-2 mt-10 border-3 border-[#FF7900] rounded-2xl md:p-6 grid grid-cols-1 mx-auto gap-4 md:w-3/5 lg:w-1/2">
+                <p className=" text-2xl font-bold mt-0 text-center">Reset Password</p>
+                <p className='text-center text-small mb-2'>Enter your new password</p>
+                <Input
+                    onChange={(e)=>setPassword(e.target.value)}
+                    name="password"
+                    value={password}
+                    labelPlacement='outside'
+                    type={isVisible ? "text" : "password"}
+                    label="Password"
+                    placeholder='Enter password'
+                    startContent={
+                        <BsLock className="text-2xl text-default-400 pointer-events-none flex-shrink" />
+                    }
+                    endContent={
+                        <button className="focus:outline-none" type="button" onClick={toggleVisibility}>
+                        {isVisible ? (
+                            <BsEyeSlashFill className="text-2xl text-default-400 pointer-events-none" />
+                        ) : (
+                            <BsEyeFill className="text-2xl text-default-400 pointer-events-none" />
+                        )}
+                        </button>
+                    }
+                />
+                <Input
+                    onChange={(e)=>setConfirmPassword(e.target.value)}
+                    labelPlacement='outside'
+                    type={confirmVisible ? "text" : "password"}
+                    label="Confirm Password"
+                    name="confirmpassword"
+                    value={confirmPassword}
+                    placeholder='Enter password'
+                    startContent={
+                        <BsLock className="text-2xl text-default-400 pointer-events-none flex-shrink" />
+                    }
+                    endContent={
+                        <button className="focus:outline-none" type="button" onClick={toggle}>
+                        {confirmVisible ? (
+                            <BsEyeSlashFill className="text-2xl text-default-400 pointer-events-none" />
+                        ) : (
+                            <BsEyeFill className="text-2xl text-default-400 pointer-events-none" />
+                        )}
+                        </button>
+                    }
+                />
+                <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleSubmit} isLoading={loading}>Reset Passeord</Button>
             </div>
+            <Loading loading={loading} />
         </div>
     )
 }
 
-export default React.memo(Newpassword)
+export default Newpassword

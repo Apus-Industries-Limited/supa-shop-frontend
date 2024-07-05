@@ -13,9 +13,7 @@ const Header: React.FC = () => {
   const { user } = useBuyerContext()
   const {pathname} = useLocation()
 
-  const toggleIsOpen = (): void => {
-    setIsOpen(!isOpen);
-  };
+  const toggleIsOpen = (): void => setIsOpen(!isOpen);
 
   const mobileLinks = [
     {
@@ -91,7 +89,7 @@ const Header: React.FC = () => {
             Categories
           </Link>
         </NavbarItem>
-        <NavbarItem className={pathname === "/shops" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2 underline"  : "px-2 border border-[#ffc999] rounded-full"}>
+        <NavbarItem className={pathname === "/shop" ? "bg-[#ff7900] text-white rounded-s-full rounded-e-full py-1 px-2 underline"  : "px-2 border border-[#ffc999] rounded-full"}>
           <Link  to="/shop">
             Shops
           </Link>
