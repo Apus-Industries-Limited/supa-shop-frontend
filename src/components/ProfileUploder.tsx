@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from "@nextui-org/react"
 import {DEV_URL as url } from "../utils/axios";
 import Avatar from "react-avatar-edit"
