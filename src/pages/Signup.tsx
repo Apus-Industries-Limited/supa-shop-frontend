@@ -116,7 +116,7 @@ const Signup = () => {
                 />
                 <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleRegisterSubmit} isLoading={loading}>Register</Button>
                 <p className="text-gray-800 text-center my-3">Or Sign up with other methods</p>
-                <Button disabled radius="full" variant="shadow" className="w-full bg-zinc-300 py-6">
+                <Button isDisabled radius="full" variant="shadow" className="w-full bg-zinc-300 py-6">
                     <Image src={google} width={25} height={25}/>
                     Continue with Google
                 </Button>
@@ -221,9 +221,9 @@ const Signup = () => {
                 />
                 <div className="col-span-2">
                     <div className="w-1/2 mx-auto">
-                        <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleRegisterSubmit} isLoading={loading}>Register</Button>
+                        <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleRegisterSubmit} isLoading={loading} isDisabled={loading}>Register</Button>
                         <p className="text-gray-800 text-center my-3">Or Sign up with other methods</p>
-                        <Button disabled radius="full" variant="shadow" className="w-full bg-zinc-400 py-6">
+                        <Button isDisabled radius="full" variant="shadow" className="w-full bg-zinc-400 py-6">
                             <Image src={google} width={25} height={25}/>
                             Continue with Google
                         </Button>

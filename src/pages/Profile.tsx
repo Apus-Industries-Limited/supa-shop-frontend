@@ -20,7 +20,7 @@ const Profile = () => {
     },
     {
       icon: <BsHeart className="me-2" size={20}/>,
-      link: "wishlist",
+      link: "/wishlist",
       name: "Favorite"
     },
     {
@@ -56,7 +56,7 @@ const Profile = () => {
         <div className="flex justify-between items-center w-full px-16">
           <User name={ user.name }  description="Online" avatarProps={{ src: user.dp? user.dp : profile  }}/>
           <p className="text-4xl capitalize text-[#ff7900]">About me</p>
-          <button className="bg-[#ff7900]  py-2 px-4 rounded-lg font-bold text-[#eeeeee] hover:bg-[#b35500]">Edit profile</button>
+          <Link to="/profile/edit" className="bg-[#ff7900]  py-2 px-4 rounded-lg font-bold text-[#eeeeee] hover:bg-[#b35500]">Edit profile</Link>
         </div>
         <div className=" mx-auto grid grid-cols-2 gap-10 my-32 align-middle px-16">
           <div className="flex items-center w-full">
@@ -83,7 +83,7 @@ const Profile = () => {
           <div className="flex items-center w-full">
             <FaLocationDot size={40} className="bg-primary text-white p-2 me-2 rounded-lg" />
             <div>
-              <p className="text-lg font-bold">{`Test Address`}</p>
+              <p className="text-lg font-bold">{user.address[0] || "Update your address"}</p>
               <p className="text-small font-thin capitalize text-gray-400">Address</p>
             </div>
           </div>
@@ -104,7 +104,7 @@ const Profile = () => {
         </div>
         <div>
           {personal.map(item => (
-            <Link to={`/profile/${item.link}`} className="flex items-center border rounded-lg my-3 py-4 px-4">
+            <Link to={`${item.link}`} key={personal.indexOf(item)} className="flex items-center border rounded-lg my-3 py-4 px-4">
               {item.icon}
               <p className="flex-grow">{item.name}</p>
               <BsChevronRight className="justify-self-end"/>
