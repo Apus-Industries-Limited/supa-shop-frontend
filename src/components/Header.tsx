@@ -68,7 +68,7 @@ const Header: React.FC = () => {
         </Link>
         {user?.name ? (
           <Link to="/profile" className="flex md:hidden items-center">
-            <User name={ user.username } description="Let's get you shopping today!" avatarProps={{ src: user.dp? user.dp : avatar  }} />
+            <User name={ user?.username } description="Let's get you shopping today!" avatarProps={{ src: user?.dp ? user.dp : avatar  }} />
           </Link>
         ) : (
             <Link to="/login" className="flex md:hidden items-center">
@@ -146,7 +146,7 @@ const Header: React.FC = () => {
           <div className={isOpen ? "md:hidden absolute top-0 left-0 z-10 w-3/4 bg-white shadow-md h-full px-3 py-4 flex flex-col animate-slideIn overflow-x-auto" : "md:hidden absolute top-0 left-0 z-10 w-3/4 bg-white shadow-md h-full px-3 py-4 flex flex-col animate-slideOut"}>
             <div className="flex sticky md:hidden mb-4 items-center">
               {user?.name ? (
-                <User name={ user.name } description={user.email} avatarProps={{ src: user.dp? user.dp : avatar  }} />
+                <User name={ user.name } description={user.email} avatarProps={{ src: user?.dp ? user.dp : avatar  }} />
               ) : (
                   <Link to="/login" onClick={toggleIsOpen}  className="flex items-center">
                     <BsPersonCircle size={36} className="me-2 text-[#ff7900]" />
