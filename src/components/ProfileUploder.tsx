@@ -51,7 +51,7 @@ const ProfileUploder = ({ isOpen, onOpenChange, id, username }: Props) => {
         onClose
         onCloseEditor();
         navigate('/profile')
-      } catch (e) {
+      } catch (e:any) {
         console.error(e)
         toastMsg("error",e.message)
       }
