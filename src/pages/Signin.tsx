@@ -65,9 +65,9 @@ const Signin = () => {
                             <Link to="/forget-password" className='text-[#ff7900]'>Forgot password?</Link>
                         </div>
                     </div>
-                    <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleLoginSubmit} isLoading={loading}>Login</Button>
+                    <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleLoginSubmit} isLoading={loading} isDisabled={loading}>Login</Button>
                     <p className="text-gray-800 text-center my-3">Or Login up with other methods</p>
-                    <Button disabled radius="full" variant="shadow" className="w-full bg-zinc-300 py-6">
+                    <Button isDisabled radius="full" variant="shadow" className="w-full bg-zinc-300 py-6">
                         <Image src={google} width={25} height={25}/>
                         Continue with Google
                     </Button>

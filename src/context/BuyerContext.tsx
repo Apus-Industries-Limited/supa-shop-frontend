@@ -5,6 +5,7 @@ import axios from "../utils/axios";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toastMsg } from "../utils/toast";
 import { EMAIL_REGEX, PWD_REGEX } from "../utils/conatant";
+import { DEV_URL as url } from "../utils/axios";
 
 
 
@@ -57,7 +58,8 @@ export const BuyerProvider = (props: Props) => {
               'Content-Type': 'application/json; charset=UTF-8'
             },withCredentials:true
         });
-      setUser(response.data?.user)
+      const result = await response.data?.user
+      setUser({...result, dp:`${url}/images/user/${result.dp}`})
       toastMsg('success','Login Successful')
       setFormData({
         name:"",

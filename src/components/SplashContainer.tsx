@@ -18,7 +18,7 @@ const SplashContainer = ({setIsFirstTime}:Props) => {
       }, 3000)
 
     return () => clearInterval(timer);
-  }, [])
+  }, [currentScreen])
 
   const skip = (url:string) => {
     localStorage.setItem("isFirstTimeUser", "false");
