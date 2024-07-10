@@ -22,7 +22,6 @@ const Product = ({title,url}:Props) => {
     if (!hasMore) return;
       try {
         const res = await axios.get(`${url}?skip=${skip}`)
-        console.log(res)
         const fetched = res.data
         setProducts(prev => [...prev, ...fetched]);
         setSkip(prev => prev + fetched.length)
@@ -44,7 +43,6 @@ const Product = ({title,url}:Props) => {
   
   useEffect(() => {
     loadProduct('/product')
-    console.log("loading")
   },[loadProduct])
   useEffect(() => {
     if (inView && hasMore) {

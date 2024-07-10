@@ -29,7 +29,6 @@ const HotDeals = () => {
     if (!hasMore) return;
       try {
         const res = await axios.get(`${url}?skip=${skip}`)
-        console.log(res)
         const fetched = res.data
         setProducts(prev => [...prev, ...fetched]);
         setSkip(prev => prev + fetched.length)
@@ -51,7 +50,6 @@ const HotDeals = () => {
   
   useEffect(() => {
     loadProduct('/product')
-    console.log("loading")
   },[loadProduct])
   useEffect(() => {
     if (inView && hasMore) {
@@ -108,8 +106,8 @@ const HotDeals = () => {
             </div>
             ))}
             {hasMore ? <div ref={ref} className='h-12 text-center my-3'>
-        <Spinner color='primary' className='mx-auto'/>
-      </div> : null}
+              <Spinner color='primary' className='mx-auto my-auto'/>
+            </div> : null}
           </div>
         </div>
         <button className="hover:bg-primary hover:text-white rounded-full bg-white text-primary absolute top-1/2 z-20 right-0" onClick={() => scroll("right")}>
