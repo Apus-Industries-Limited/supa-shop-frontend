@@ -59,7 +59,7 @@ export const BuyerProvider = (props: Props) => {
             },withCredentials:true
         });
       const result = await response.data?.user
-      setUser({...result, dp:`${url}/images/user/${result.dp}`})
+      setUser({ ...result, dp: `${result.dp !== null ? `${url}/images/user/${result.dp}` : ""}` })
       toastMsg('success','Login Successful')
       setFormData({
         name:"",
