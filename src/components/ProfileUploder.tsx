@@ -8,14 +8,14 @@ import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import useBuyerContext from "../hooks/useBuyerContext";
 import { useNavigate } from "react-router-dom";
 
-interface Props{
+interface Props {
   isOpen: boolean;
   onOpenChange: () => void;
-  id: string;
-  username: string
+  username: string;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const ProfileUploder = ({ isOpen, onOpenChange, id, username }: Props) => {
+const ProfileUploder = ({ isOpen, onOpenChange, username,setLoading }: Props) => {
   const {setUser,user} = useBuyerContext()
   const axiosPrivate = useAxiosPrivate()
   const src = ""
@@ -41,7 +41,8 @@ const ProfileUploder = ({ isOpen, onOpenChange, id, username }: Props) => {
       const formData = new FormData();
       formData.append("dp", blob, `${username}.webp`);
       try {
-        const res = await axiosPrivate.post(`/profile/${id}`, formData, {
+        setLoading(true)
+        const res = await axiosPrivate.post('/profile/dp', formData, {
           headers: {
             "Content-Type":"multipart/form-data"
           }
@@ -55,6 +56,8 @@ const ProfileUploder = ({ isOpen, onOpenChange, id, username }: Props) => {
       } catch (e:any) {
         console.error(e)
         toastMsg("error",e.message)
+      } finally {
+        setLoading(false)
       }
     } else {
       toastMsg('error',"Failed to upload image")
