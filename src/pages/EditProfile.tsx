@@ -34,10 +34,31 @@ const EditProfile = () => {
     navigate('/profile')
   }
 
+  const deleteProfileImage = async () => {
+    try {
+      const res = await axiosPrivate.delete('/profile/dp');
+      toastMsg("success", res.data.message)
+      setUser({ ...user, dp: "" })
+      handleCancle()
+    } catch (e:any) {
+      if (!e?.response) {
+        toastMsg("error","No server response")
+      }
+      if (e?.response.status === 400) {
+        toastMsg("error", "User Id is required")
+      }
+      if (e?.response.status === 404) {
+        toastMsg("error", "User or image was not found")
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
+
   const updateUser = async () => {
     try {
       setLoading(true)
-      const res = await axiosPrivate.put(`/profile/${user?.id}`, formData, {
+      const res = await axiosPrivate.patch(`/profile`, formData, {
         headers: {
           "Content-Type":"application/json"
         }
@@ -84,7 +105,7 @@ const EditProfile = () => {
             </div>
             <div className="flex items-center">
               <Button color="primary" className="me-2 font-bold" onClick={onOpen}>Upload New Photo</Button>
-              <Button color="default" className="ms-2 font-bold">Delete</Button>
+              <Button color="default" className="ms-2 font-bold" onClick={deleteProfileImage}>Delete</Button>
             </div>
           </div>
 
@@ -118,7 +139,7 @@ const EditProfile = () => {
         <Button isLoading={loading} isDisabled={loading} color="primary"className="w-full" radius="full" onClick={updateUser}>Save profile change</Button>
       </div>
       <Loading loading={loading} />
-      <ProfileUploder isOpen={isOpen} onOpenChange={onOpenChange} id={user.id} username={user.username} />
+      <ProfileUploder isOpen={isOpen} onOpenChange={onOpenChange} username={user.username} setLoading={setLoading} />
     </div>
   )
 }

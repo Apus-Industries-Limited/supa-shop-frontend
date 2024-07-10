@@ -1,6 +1,7 @@
 import { useCallback } from "react"
 import axios from "../utils/axios"
 import useBuyerContext from "./useBuyerContext"
+import { DEV_URL as url } from "../utils/axios";
 
 
 const useRefreshToken = () => {
@@ -12,8 +13,7 @@ const useRefreshToken = () => {
         withCredentials:true
       })
       const accessToken = response.data.accessToken
-      setUser(response.data)
-      console.log(response.data)
+      setUser({...response.data, dp: `${response.data.dp !== null ? `${url}/images/user/${response.data.dp}` : ""}`})
       return accessToken;
     } catch (e) {
       console.error(e)
