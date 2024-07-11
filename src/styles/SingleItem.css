@@ -1,3 +1,10 @@
 .reduce{
     height: 300px;
 }
+@media (max-width:974px) {
+div.midBtn{
+        order: 3;
+        width: 100%;
+
+    }
+}

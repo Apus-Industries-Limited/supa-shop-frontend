@@ -4,11 +4,14 @@ import star from "../assets/star.svg";
 const SingleItem = () => {
   return (
     <div className="min-h-screen w-full ">
-      <div className="w-full h-1/2  bg-neutral-100 flex items-center justify-center">
+      <div className="w-full h-1/2  bg-neutral-100 flex items-center justify-center pb-8 pt-8">
         <img src={img} alt="" className=" relative reduce" />
       </div>
-      <div className="w-full h-1/2 bg-neutral-200 px-6 py-10 flex">
-        <div className=" w-1/3">
+      <div
+        className="w-full h-full bg-neutral-200 px-6 py-10 block md:flex flex-wrap midBtn
+"
+      >
+        <div className=" w-full md-w-1/2 sm:w-1/3">
           <div className="flex items-center gap-4">
             <h3 className=" text-xl text-neutral-700 font-extrabold ">
               Straw Hat
@@ -33,13 +36,16 @@ const SingleItem = () => {
             esse porro.
           </article>
         </div>
-        <div className="w-1/3">
-          <button className="bg-[#FF7900] text-white text-lg font-extrabold px-5 py-2 rounded-[20px] w-[200px]">
+        <div
+          className="w-1/3 sm-w-full md-w-full  end-6 flex justify-center items-end px-16 midBtn
+"
+        >
+          <button className="bg-[#FF7900] text-white text-lg font-extrabold px-5 py-2 rounded-[20px] w-full">
             Add to cart
           </button>
         </div>
-        <div className="w-1/3">
-          <div className="flex justify-start items-center gap-9">
+        <div className=" w-full md-w-1/2 sm:w-1/3 sm:justify-end">
+          <div className="flex justify-start sm:justify-center items-center gap-9">
             <div>
               <div>
                 {" "}

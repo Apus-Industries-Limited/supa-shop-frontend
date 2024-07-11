@@ -68,15 +68,7 @@ const Header: React.FC = () => {
         </Link>
         {user?.name ? (
           <Link to="/profile" className="flex md:hidden items-center">
-<<<<<<< HEAD
-            <User
-              name={user.username}
-              description="Let's get you shopping today!"
-              avatarProps={{ src: user.dp ? user.dp : avatar }}
-            />
-=======
             <User name={ user?.username } description="Let's get you shopping today!" avatarProps={{ src: user?.dp ? user.dp : avatar  }} />
->>>>>>> e436f82ee8c93706f0acf634ab929b869b0c055d
           </Link>
         ) : (
           <Link to="/login" className="flex md:hidden items-center">
@@ -159,15 +151,7 @@ const Header: React.FC = () => {
           >
             <div className="flex sticky md:hidden mb-4 items-center">
               {user?.name ? (
-<<<<<<< HEAD
-                <User
-                  name={user.name}
-                  description={user.email}
-                  avatarProps={{ src: user.dp ? user.dp : avatar }}
-                />
-=======
                 <User name={ user.name } description={user.email} avatarProps={{ src: user?.dp ? user.dp : avatar  }} />
->>>>>>> e436f82ee8c93706f0acf634ab929b869b0c055d
               ) : (
                   <Link to="/login" onClick={toggleIsOpen}  className="flex items-center">
                     <BsPersonCircle size={36} className="me-2 text-[#ff7900]" />
