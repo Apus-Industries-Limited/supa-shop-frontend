@@ -1,26 +1,4 @@
-// src/types/formTypes.ts
-export interface SignUpFormData {
-    name: string;
-    email: string;
-    phoneNumber: string;
-    username: string;
-    password: string;
-}
-
-export interface SignInFormData {
-    username: string;
-    password: string;
-}
-
-export interface ForGetPasswordFormData {
-    email: string;
-    phonenumber: string;
-}
-export interface RestPasswordFormData {
-    password: string;
-    confirmpassword: string;
-}
-
+// src/types/formTypes.ts   confirmpassword: string;
 export interface FormData{
     name: string;
     email: string;
@@ -30,5 +8,10 @@ export interface FormData{
     confirmpassword: string;
 }
 
-
+export interface EditProfileData{
+    name: string;
+    username: string;
+    phone_number: string;
+    address: string;
+}
 

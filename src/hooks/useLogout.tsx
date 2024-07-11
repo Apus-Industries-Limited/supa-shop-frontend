@@ -9,12 +9,13 @@ const useLogout = () =>
   const { setUser } = useBuyerContext()
   const logout = async () =>
   {
-    setUser( {} );
+    
     try {
-      const response = await axios('/logout')
+      const response = await axios.get('/logout')
       if (response.status === 204 || response.status === 202) {
-        toastMsg("info", "Logout successful")
-        navigate('/')
+        toastMsg("info", "Logout successful");
+        navigate('/');
+        setUser({});
       }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {

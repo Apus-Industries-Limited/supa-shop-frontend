@@ -36,7 +36,9 @@ const useAxiosPrivate = () => {
     }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[user])
+  }, [user])
+  
+  return axiosPrivate;
 }
 
 export default useAxiosPrivate

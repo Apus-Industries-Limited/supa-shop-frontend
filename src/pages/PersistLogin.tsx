@@ -24,7 +24,7 @@ const PersistLogin = () => {
 
     !user?.accessToken && persist ? verifyRefreshToken() : setLoading(false)
 
-  }, [persist])
+  }, [persist,user])
   return (
     <>
       {!persist ?

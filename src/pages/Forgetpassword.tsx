@@ -1,54 +1,42 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import useBuyerContext from '../hooks/useBuyerContext';
 import BackButton from '../components/BackButton';
+import Loading from '../components/Loading';
+import { Button, Input } from '@nextui-org/react';
+import { BsEnvelope } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
 
 
 const Forgetpassword = () => {
 
-    const {formData,handleChange, handleForgetPassword} = useBuyerContext()
+    const {formData,handleChange, handleForgetPassword,loading} = useBuyerContext()
 
 
    
 
     return (
-        <div>
-            <div className='lg:w-full md:w-[910px] md:h-[1390px]  lg:h-[1024px] lg:bg-[#F4F1F1] md:bg-[#F4F1F1] flex  flex-row sm:flex sm:flex-col sm:space-x-0 font-light lg:space-x-8  sm:p-7 md:p-16'>
-                <div className=' font-normal flex item-start ml-16 m-5'>
-                    <BackButton/>
-                </div>
-                <div className=' lg:w-[1160px]  lg:h-[664px] bg-[#FFFFFF] m-[30px] md:w-[720px] flex-shrink-0 rounded-[32px] flex md:space-x-12 md:items-center p-3 sm:flex-col md:flex-col  sm:items-center lg:flex-col  items-center '>
-                    <span><h1 className='text-[#1E1E1E] text-[24px]  text-center font-black font-["Mont"] w-[83] h-[31] mt-9'>Forget Password?</h1><br/>
-                        <p  className='text-[#1E1E1E] text-[20px] font-light font-["Mont"] w-[136] h-[18]'>Choose Your Recovery Option</p>
-                    </span>
+        <div className=" mx-auto m-4 container bg-neutral-50 rounded-md py-8 px-6 shadow-xl min-h-[80dvh]">
+            <BackButton />
+            <div className="p-2 mt-10 border-3 border-[#FF7900] rounded-2xl md:p-6 grid grid-cols-1 mx-auto gap-4 md:w-3/5 lg:w-1/2">
+                <p className=" text-2xl font-bold mt-0 text-center">Forgot Password</p>
+                <p className='text-center text-small mb-2'>We are here to help!</p>
+                <Input
+                    onChange={handleChange}
+                    labelPlacement='outside'
+                    name="email"
+                    value={formData.email}
+                    type="email"
+                    label="Email"
+                    placeholder='Enter your email'
+                    startContent={
+                        <BsEnvelope className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>
+                    }
+                />
+                <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleForgetPassword} isLoading={loading}>Send Recovery Link</Button>
 
-                    <div className='mt-5'>
-
-
-
-                    <form action='POST'>
-                        <span className=''>
-                            <label className='text-[#1E1E1E] font-bold text-[14px]'>Email</label><br></br>
-                            <input type='text' placeholder=' johndoe@gmail.com' name='email'
-                            onChange={handleChange}
-                            value={formData.email}
-                            className=' border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[350px] lg:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/>
-                        </span><br></br>
-
-                        <label className='text-[#1E1E1E] font-bold text-[14px]'>Phone</label><br/>
-                        <input type='tel' name='phonenumber' placeholder=' +234 123 456 789'
-                         maxLength={10}
-                        onChange={handleChange}
-                        value={formData.phonenumber}
-                        className=' border-none sm:mb-2 sm:w-[307px] sm:h-[40px] focus:outline-none md:w-[350px] lg:w-[442px] md:h-[60px] bg-[#F2F2F2] lg:mb-12  rounded-[5px] p-2'/><br/>
-                        <button type='submit'
-                        onSubmit={handleForgetPassword}
-                        className=' sm:mt-8 sm:w-[307px]  hover:bg-[#c37046] sm:h-[52px] lg:w-[442px] md:w-[350px] md:h-[60px]  text-center p-[8px] bg-[#FF7900] rounded-[10px] font-medium md:text-[18px] sm:text-[10px] text-[#FFFFFF]'>Sign In</button> 
-                    </form>
-
-
-                    </div>
-                </div>
+                <p className="text-center my-3">Remeber Password? <Link to="/login" className="text-[#FF7900]">Login</Link></p>
             </div>
+            <Loading loading={loading} />
         </div>
     )
 }

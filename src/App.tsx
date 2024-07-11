@@ -23,6 +23,10 @@ import Wishlist from './pages/Wishlist';
 import SingleItem from './pages/SingleItem';
 import { useEffect, useState } from 'react';
 import SplashContainer from './components/SplashContainer';
+import EditProfile from './pages/EditProfile';
+import UserAddress from './pages/UserAddress';
+import Order from './pages/Order';
+import ChangePassword from './pages/ChangePassword';
 
 
 
@@ -49,48 +53,53 @@ const App =() => {
       ) : (
           <>
             {/* Routes for Buyers */}
-      <Route path='/' element={<BuyerLayout />}>
-        {/*@dev: this next line will be changed once the main home screen is done */}
-        <Route index element={<Home />} />
-        <Route path=":id" element={<SingleItem/>}/>
-        <Route path='signup' element={<Signup />} />
-        {/* ... */}
-        <Route path="email-otp" element={<Emailotp/>}/>
-        <Route path="forget-password" element={<Forgetpassword/>}/>
-        <Route path="update-password" element={<Newpassword/>}/>
-        <Route path="login" element={<Signin />} />
-        {/* Route for shops and it's details */}
-        <Route path='shop' >
-          <Route index element={<Shop />} />
-          <Route path=':id' element={<SingleShop />} />
-        </Route>
-        {/* Route for category pages */}
-        <Route path='category' >
-          <Route index element={<Category />} />
-          <Route path='name' element={<SingleCategory/>}/>
-        </Route>
-        {/* Route for cart */}
-        <Route path="cart" element={<Cart/>}/>
-        
-        
-        {/*
-        * @dev: This routes are protected until a user is signed in
-         */}
-        <Route element={<PersistLogin />}>
-          <Route element={<RequireAuth />}>
-            <Route path='profile' element={<Profile />} />
-            <Route path="wishlist" element={<Wishlist/>}/>
-            <Route path='address' element={<Address/>}/>
-            <Route path='card-details' element={<CardDetails/>}/>
-            <Route path='delivery-method' element={<Delivery/>}/>
-            <Route path='order-successfull' element={<OrderCompleted/>} />
-          </Route>
-        </Route>
+            <Route path='/' element={<BuyerLayout />}>
+              {/*@dev: this next line will be changed once the main home screen is done */}
+              <Route index element={<Home />} />
+              <Route path=":id" element={<SingleItem/>}/>
+              <Route path='signup' element={<Signup />} />
+              {/* ... */}
+              <Route path="email-otp" element={<Emailotp/>}/>
+              <Route path="forget-password" element={<Forgetpassword/>}/>
+              <Route path="update-password" element={<Newpassword/>}/>
+              <Route path="login" element={<Signin />} />
+              {/* Route for shops and it's details */}
+              <Route path='shop' >
+                <Route index element={<Shop />} />
+                <Route path=':id' element={<SingleShop />} />
+              </Route>
+              {/* Route for category pages */}
+              <Route path='category' >
+                <Route index element={<Category />} />
+                <Route path='name' element={<SingleCategory/>}/>
+              </Route>
+              {/* Route for cart */}
+              <Route path="cart" element={<Cart/>}/>
+              {/*
+              * @dev: This routes are protected until a user is signed in
+              */}
+              <Route element={<PersistLogin />}>
+                <Route element={<RequireAuth />}>
+                  {/* This Route handle everything pertaing to the user Profile. A user can't access aprofile if not signed in */}
+                  <Route path='profile'>
+                    <Route index element={<Profile />} />
+                    <Route path='edit' element={<EditProfile />} />
+                    <Route path='address' element={<UserAddress />} />
+                    <Route path="order" element={<Order />} />
+                    <Route path='change-password' element={<ChangePassword/>}/>
+                  </Route>
+                  <Route path="wishlist" element={<Wishlist/>}/>
+                  <Route path='address' element={<Address/>}/>
+                  <Route path='card-details' element={<CardDetails/>}/>
+                  <Route path='delivery-method' element={<Delivery/>}/>
+                  <Route path='order-successfull' element={<OrderCompleted/>} />
+                </Route>
+              </Route>
 
-        {/* Catch all or 404 page */}
-        <Route path='*' element={<Missing/>} />
-      </Route>
-      {/* Customers Details Routes */}
+              {/* Catch all or 404 page */}
+              <Route path='*' element={<Missing/>} />
+            </Route>
+            {/* Customers Details Routes */}
 
           </>
       )}

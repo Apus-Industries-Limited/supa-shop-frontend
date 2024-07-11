@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { FaCartShopping } from 'react-icons/fa6';
 import { BsHeart, BsStarFill } from 'react-icons/bs';
 import axios from '../../utils/axios';
+import { PRODUCTS } from '../../utils/conatant';
 
 interface Props{
   title: string | null;
@@ -13,44 +14,7 @@ interface Props{
 }
 
 const Product = ({title,url}:Props) => {
-    const [products,setProducts] = useState<any[]>([
-    {
-      id: 1,
-      name: 'Product 1',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 3,
-      name: 'Product 3',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 4,
-      name: 'Product 4',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 5,
-      name: 'Product 5',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    },
-    {
-      id: 6,
-      name: 'Product 6',
-      price: 100,
-      image: 'https://picsum.photos/200/300',
-    }
-  ])
+    const [products,setProducts] = useState<any[]>(PRODUCTS)
   const [skip, setSkip] = useState<number>(0);
   const [hasMore,setHasMore] = useState(true)
 
@@ -58,7 +22,6 @@ const Product = ({title,url}:Props) => {
     if (!hasMore) return;
       try {
         const res = await axios.get(`${url}?skip=${skip}`)
-        console.log(res)
         const fetched = res.data
         setProducts(prev => [...prev, ...fetched]);
         setSkip(prev => prev + fetched.length)
@@ -80,7 +43,6 @@ const Product = ({title,url}:Props) => {
   
   useEffect(() => {
     loadProduct('/product')
-    console.log("loading")
   },[loadProduct])
   useEffect(() => {
     if (inView && hasMore) {

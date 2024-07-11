@@ -14,7 +14,7 @@ const Signup = () => {
     const toggle = () => setConfirmVisible(!confirmVisible);
 
     return(
-        <div className=" mx-auto m-4 container bg-neutral-50 shadow-xl rounded-md py-8 px-6">
+        <div className=" mx-auto m-4 container bg-neutral-50 shadow-xl rounded-md py-8 px-6 ">
             <p className="text-center text-xl font-bold">Welcome to SupaShop</p>
             <p className="text-center text-sm">Kindly sign up to start shopping</p>
 
@@ -116,7 +116,7 @@ const Signup = () => {
                 />
                 <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleRegisterSubmit} isLoading={loading}>Register</Button>
                 <p className="text-gray-800 text-center my-3">Or Sign up with other methods</p>
-                <Button disabled radius="full" variant="shadow" className="w-full bg-zinc-300 py-6">
+                <Button isDisabled radius="full" variant="shadow" className="w-full bg-zinc-300 py-6">
                     <Image src={google} width={25} height={25}/>
                     Continue with Google
                 </Button>
@@ -125,7 +125,7 @@ const Signup = () => {
             </div>
 
             {/* Large screens */}
-            <div className="hidden lg:grid lg:grid-cols-2 mt-10 border-3 border-[#FF7900] lg:w-1/2 rounded p-6 lg:gap-4 mx-auto">
+            <div className="hidden lg:grid lg:grid-cols-2 mt-10 border-3 border-[#FF7900] lg:w-1/2 rounded p-6 lg:gap-4 mx-auto ">
                 <Input
                     labelPlacement='outside'
                     type="text"
@@ -201,7 +201,7 @@ const Signup = () => {
                 <Input
                     onChange={handleChange}
                     labelPlacement='outside'
-                    type={isVisible ? "text" : "password"}
+                    type={confirmVisible ? "text" : "password"}
                     label="Confirm Password"
                     name="confirmpassword"
                     value={formData.confirmpassword}
@@ -221,9 +221,9 @@ const Signup = () => {
                 />
                 <div className="col-span-2">
                     <div className="w-1/2 mx-auto">
-                        <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleRegisterSubmit} isLoading={loading}>Register</Button>
+                        <Button radius="full" variant="shadow" className="bg-[#FF7900] py-6 text-[#eeeeee] w-full shadow-lg" onClick={handleRegisterSubmit} isLoading={loading} isDisabled={loading}>Register</Button>
                         <p className="text-gray-800 text-center my-3">Or Sign up with other methods</p>
-                        <Button disabled radius="full" variant="shadow" className="w-full bg-zinc-400 py-6">
+                        <Button isDisabled radius="full" variant="shadow" className="w-full bg-zinc-400 py-6">
                             <Image src={google} width={25} height={25}/>
                             Continue with Google
                         </Button>
@@ -232,7 +232,7 @@ const Signup = () => {
                     </div>
                 </div>
             </div>
-            <Loading/>
+            <Loading loading={loading} />
         </div>
     )
 }
