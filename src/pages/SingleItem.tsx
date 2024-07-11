@@ -44,7 +44,7 @@ const SingleItem = () => {
             Add to cart
           </button>
         </div>
-        <div className=" w-full md-w-1/2 sm:w-1/3 sm:justify-end">
+        <div className=" w-full md-w-1/2 sm:w-1/3 sm:justify-end ">
           <div className="flex justify-start sm:justify-center items-center gap-9">
             <div>
               <div>
