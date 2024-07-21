@@ -23,7 +23,7 @@ const Product = ({title,url}:Props) => {
       try {
         const res = await axios.get(`${url}?skip=${skip}`)
         const fetched = res.data
-        setProducts(prev => [...prev, ...fetched]);
+        setProducts( [...products, ...fetched]);
         setSkip(prev => prev + fetched.length)
         if (fetched.length < 10) {
           setHasMore(false);
@@ -32,7 +32,7 @@ const Product = ({title,url}:Props) => {
         console.error(error)
         setHasMore(false)
       } 
-    },[skip, hasMore])
+    },[skip, hasMore, products])
 
 
 
@@ -42,8 +42,10 @@ const Product = ({title,url}:Props) => {
   })
   
   useEffect(() => {
-    loadProduct('/product')
-  },[loadProduct])
+    if (url) {
+      loadProduct(url)
+    }
+  },[loadProduct,url])
   useEffect(() => {
     if (inView && hasMore) {
       loadProduct(url);

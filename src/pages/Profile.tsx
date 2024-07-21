@@ -83,7 +83,7 @@ const Profile = () => {
           <div className="flex items-center w-full">
             <FaLocationDot size={40} className="bg-primary text-white p-2 me-2 rounded-lg" />
             <div>
-              <p className="text-lg font-bold">{user.address[0] || "Update your address"}</p>
+              <p className="text-lg font-bold">{user.address !== null ? user.address[user.address.length-1].address: "Update your address"}</p>
               <p className="text-small font-thin capitalize text-gray-400">Address</p>
             </div>
           </div>
