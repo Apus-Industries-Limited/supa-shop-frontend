@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import useBuyerContext from '../hooks/useBuyerContext';
-import Loading from '../components/Loading';
+import Loading from '../components/animation/Loading';
 import { BsEnvelope, BsEyeFill, BsEyeSlashFill, BsLock, BsPerson, BsPersonLinesFill, BsPhone } from "react-icons/bs"
 import { Button, Image, Input } from '@nextui-org/react';
 import google from "../assets/image/google.svg"
@@ -96,7 +96,7 @@ const Signup = () => {
                 <Input
                     onChange={handleChange}
                     labelPlacement='outside'
-                    type={isVisible ? "text" : "password"}
+                    type={confirmVisible ? "text" : "password"}
                     label="Confirm Password"
                     name="confirmpassword"
                     value={formData.confirmpassword}

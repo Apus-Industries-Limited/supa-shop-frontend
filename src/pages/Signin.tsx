@@ -2,7 +2,7 @@ import { Button, Checkbox, Image, Input } from '@nextui-org/react';
 import useBuyerContext from '../hooks/useBuyerContext';
 import { Link } from 'react-router-dom';
 import { BsEnvelope, BsEyeFill, BsEyeSlashFill, BsLock } from "react-icons/bs"
-import Loading from '../components/Loading';
+import Loading from '../components/animation/Loading';
 import BackButton from '../components/BackButton';
 import google from "../assets/image/google.svg"
 import { useEffect } from 'react';

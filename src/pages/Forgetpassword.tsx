@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import useBuyerContext from '../hooks/useBuyerContext';
 import BackButton from '../components/BackButton';
-import Loading from '../components/Loading';
+import Loading from '../components/animation/Loading';
 import { Button, Input } from '@nextui-org/react';
 import { BsEnvelope } from 'react-icons/bs';
 import { Link } from 'react-router-dom';

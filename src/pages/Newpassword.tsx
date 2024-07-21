@@ -5,7 +5,7 @@ import { useNavigate,useLocation } from 'react-router-dom';
 import { toastMsg } from '../utils/toast'
 import { Button, Input } from '@nextui-org/react';
 import BackButton from '../components/BackButton';
-import Loading from '../components/Loading';
+import Loading from '../components/animation/Loading';
 import { BsEyeFill, BsEyeSlashFill, BsLock } from 'react-icons/bs';
 import { PWD_REGEX } from '../utils/conatant';
 

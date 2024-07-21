@@ -1,5 +1,5 @@
-import "../styles/Loader.css"
-import icon from "../assets/image/6.png"
+import "../../styles/Loader.css"
+import icon from "../../assets/image/6.png"
 
 interface Props{
   loading : boolean

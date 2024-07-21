@@ -12,17 +12,17 @@ const toastConfig : ToastOptions = {
   transition: Bounce
 }
 
-export const toastMsg = (status:string, msg:string) => {
-      if (status.toLocaleLowerCase() === "success") {
+export const toastMsg = (status:"error" | "success" | "info" | "warning", msg:string) => {
+      if (status === "success") {
             return toast.success(msg, toastConfig)
       }
-      if (status.toLocaleLowerCase() === "info") {
+      if (status === "info") {
             return toast.info(msg, toastConfig)
       } 
-      if (status.toLocaleLowerCase() === "warning") {
+      if (status === "warning") {
             return toast.warning(msg, toastConfig)
       }
-      if (status.toLocaleLowerCase() === "error") {
+      if (status === "error") {
             return toast.error(msg, toastConfig)
       }
 }
