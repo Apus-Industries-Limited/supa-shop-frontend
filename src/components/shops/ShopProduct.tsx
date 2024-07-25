@@ -46,8 +46,8 @@ const ShopProduct = ({ id }: Props) => {
   }, [fetchedProduct,id])
   
   return (
-    <div className="w-full mx-auto h-full py-5 overflow-y-auto px-8">
-      {!products.length && hasMore && <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 py-10'>
+    <div className="w-full mx-auto h-full py-5 overflow-y-auto md:px-8">
+      {!products.length && hasMore && <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:py-10'>
         <SkeletonLoad />
         <SkeletonLoad />
         <SkeletonLoad />
@@ -60,14 +60,14 @@ const ShopProduct = ({ id }: Props) => {
         <SkeletonLoad />
       </div>}
       {products && !hasMore && <>
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 py-10">
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:py-10">
           {products.map(product => (
             <StoreProduct key={product.id} product={product}/>
           ))}
         </div>
       </>}
       {products && hasMore && <>
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 py-10">
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 md:py-10">
           {products.map(product => (
             <StoreProduct key={product.id} product={product}/>
           ))}

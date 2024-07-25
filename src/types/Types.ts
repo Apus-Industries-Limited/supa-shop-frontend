@@ -1,8 +1,11 @@
-export interface Crop {
-      x: number;
-      y: number;
-      width: number;
-      height: number;
+export interface Ratings {
+      userId: string
+      rating: number
+}
+
+export interface Review{
+      userId: string
+      review: string
 }
 
 export interface Password{
@@ -20,12 +23,16 @@ export interface ShopProps {
       address: string
       city: string
       country: string
+      ratings: Ratings[]
+      reviews: Review[]
       dp: string
       isVerified: boolean
       isPromoted: boolean 
       category:string
       createdAt: string
 }
+
+
 
 export interface Product {
       id: string;
@@ -40,9 +47,17 @@ export interface Product {
       isInStock: boolean;
       color: string[]
       dimension: unknown;
-      ratings: number[];
+      ratings: Ratings[];
+      reviews: Review[]
       isFeatured: boolean;
-
 }
 
-
+export interface UserSafe{
+      id: string
+      dp: string
+      email: string
+      isVerified: boolean
+      name: string
+      phone_number: string
+      username: string
+}

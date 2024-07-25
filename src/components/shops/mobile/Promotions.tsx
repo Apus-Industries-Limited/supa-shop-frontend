@@ -1,20 +1,23 @@
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from 'react-responsive-carousel';
 import { Image } from "@nextui-org/react";
-import img1 from "../../assets/image/scout.jpg";
-import img2 from "../../assets/image/sales.svg";
-import img3 from "../../assets/image/easy.jpg"
+import img1 from "../../../assets/image/scout.jpg";
+import img2 from "../../../assets/image/sales.svg";
+import img3 from "../../../assets/image/easy.jpg"
+// import { useState } from "react";
 
-const Hero = () => {
+
+const Promotions = () => {
+  /* const [promotions,setPromotions] = useState<unknown[]>([]) */
   return (
-    <div className="max-w-full">
-      <Carousel infiniteLoop showArrows={false}  className=" h-52  w-full shadow-3xl rounded-2xl md:rounded-none" autoPlay={true} showThumbs={false}>
+    <div className="max-w-full mb-3">
+      <Carousel infiniteLoop showArrows={false}  className=" h-32  w-full shadow-3xl rounded-2xl md:rounded-none" autoPlay={true} showThumbs={false}>
         <div className="w-full bg-[#fc6218] h-100 text-white rounded-2xl md:rounded-none shadow-2xl flex items-center justify-evenly">
           <Image
             src={img1}
             radius='lg'
             width="100%"
-            className="mx-auto object-cover h-52 w-full"
+            className="mx-auto object-cover h-32 w-full"
           />
           <div>
             <p className="text-medium md:text-lg lg:text-2xl mb-3">Scout for</p>
@@ -26,7 +29,7 @@ const Hero = () => {
             src={img2}
             radius='lg'
             width="100%"
-            className="mx-auto object-cover h-52 w-full"
+            className="mx-auto object-cover h-32 w-full"
           />
           <div>
             <p className="text-medium md:text-lg lg:text-2xl mb-3 text-neutral-600">Get top</p>
@@ -41,7 +44,7 @@ const Hero = () => {
           <Image src={img3}
             radius='lg'
             width="100%"
-            className="mx-auto object-cover h-52 w-full"
+            className="mx-auto object-cover h-32 w-full"
           />
         </div>
       </Carousel>
@@ -49,6 +52,4 @@ const Hero = () => {
   )
 }
 
-// #FC6218, #FC6218
-
-export default Hero
+export default Promotions

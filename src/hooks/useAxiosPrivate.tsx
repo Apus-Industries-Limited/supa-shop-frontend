@@ -35,8 +35,7 @@ const useAxiosPrivate = () => {
       axiosPrivate.interceptors.response.eject(responseIntercept);
     }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user])
+  }, [user, refresh])
   
   return axiosPrivate;
 }

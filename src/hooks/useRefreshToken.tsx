@@ -18,7 +18,7 @@ const useRefreshToken = () => {
     } catch (e) {
       console.error(e)
     }
-  },[])
+  },[setUser])
 
   return refresh;
 }

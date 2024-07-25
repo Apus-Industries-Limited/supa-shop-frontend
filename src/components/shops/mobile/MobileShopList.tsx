@@ -1,18 +1,19 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useInView } from 'react-intersection-observer';
 import { useCallback, useEffect,useState } from 'react';
-import ShopMenu from "./ShopMenu"
-import SingleShop from "./SingleShop"
-import axios from '../../utils/axios';
-import { ShopProps } from '../../types/Types';
-import SkeletonLoad from '../animation/SkeletonLoad';
+import axios from '../../../utils/axios';
+import { ShopProps } from '../../../types/Types';
+import SkeletonLoad from '../../animation/SkeletonLoad';
+import MobileSingleShop from './MobileSingleShop';
 
-
-const ShopList = () => {
+interface Props{
+  url: string;
+}
+const MobileShopList = ({url}:Props) => {
   const [shops, setShops] = useState<ShopProps[]>([])
   const [skip, setSkip] = useState<number>(0);
   const [hasMore, setHasMore] = useState(true)
-  const [url,setUrl] = useState<string>("/store?category=")
+  
   
   const loadShops = useCallback(async (url:string) => {
     if (!hasMore) return;
@@ -56,9 +57,8 @@ const ShopList = () => {
   },[loadShops,inView,hasMore,url])
   
   return (
-    <div className="w-full mx-auto h-full py-5 overflow-y-auto px-8">
-      <ShopMenu setUrl={setUrl} url={url} />
-      {!shops && hasMore && <div className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 py-10'>
+    <div className='py-4'>
+      {!shops && hasMore && <div className='grid grid-cols-2 gap-4 py-0'>
         <SkeletonLoad />
         <SkeletonLoad />
         <SkeletonLoad />
@@ -70,20 +70,19 @@ const ShopList = () => {
         <SkeletonLoad />
         <SkeletonLoad />
       </div>}
-      {shops && !hasMore && <>
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 py-10">
+      {shops && !hasMore &&
+        <div className="grid grid-cols-2 gap-4">
           {shops.map(shop => (
-            <SingleShop key={shop.id} shop={shop}/>
+            <MobileSingleShop key={shop.id} shop={shop}/>
           ))}
-        </div>
-      </>}
+        </div>}
       {shops && hasMore && <>
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 py-10">
+        <div className="grid grid-cols-2 gap-4">
           {shops.map(shop => (
-            <SingleShop key={shop.id} shop={shop}/>
+            <MobileSingleShop key={shop.id} shop={shop}/>
           ))}
         </div>
-        {hasMore ? <div ref={ref} className='grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 py-10'>
+        {hasMore ? <div ref={ref} className='grid grid-cols-2 gap-4'>
           <SkeletonLoad />
           <SkeletonLoad />
           <SkeletonLoad />
@@ -96,7 +95,7 @@ const ShopList = () => {
           <SkeletonLoad />
         </div> : null}
       </>}
-      {!shops.length && !hasMore && <div className='h-full flex flex-col justify-center items-center'>
+      {!shops.length && !hasMore && <div className='h-52 flex flex-col justify-center items-center'>
         <p className="text-lg capitalize">No Shop at the moment</p>
         <p>Check again later</p>
       </div>}
@@ -104,4 +103,4 @@ const ShopList = () => {
   )
 }
 
-export default ShopList
+export default MobileShopList
