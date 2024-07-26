@@ -63,7 +63,7 @@ const HotDeals = () => {
         <button onClick={() => scroll("left")} className={products.length > 5 ? 'absolute top-1/2 z-20 left-0  hover:text-white rounded-full  me-2 bg-white text-primary hover:bg-primary' : "hidden"} >
           <BsArrowLeftCircle size={36}/>
         </button>
-        {!products.length && hasMore && <div className='flex space-x-3 w-full'>
+        {!products.length && hasMore && <div className='flex space-x-3 justify-between w-full overflow-x-auto scrollbar-hide py-2'>
           <SkeletonLoad />
           <SkeletonLoad />
           <SkeletonLoad />

@@ -1,5 +1,5 @@
 import axios from "axios"
-export const DEV_URL: string ='https://supa-shop-backend.onrender.com'/*  'http://localhost:3500'*/ 
+export const DEV_URL: string =/*'https://supa-shop-backend.onrender.com'*/  'http://localhost:3500' 
 
 
 export default axios.create( {

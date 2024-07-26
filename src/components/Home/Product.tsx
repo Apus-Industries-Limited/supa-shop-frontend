@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { FaCartShopping } from 'react-icons/fa6';
 import { BsHeart, BsStarFill } from 'react-icons/bs';
 import axios from '../../utils/axios';
-import { PRODUCTS } from '../../utils/conatant';
+import { Product as ProductType } from '../../types/Types';
 
 interface Props{
   title: string | null;
@@ -14,7 +14,7 @@ interface Props{
 }
 
 const Product = ({title,url}:Props) => {
-    const [products,setProducts] = useState<any[]>(PRODUCTS)
+    const [products,setProducts] = useState<ProductType[]>([])
   const [skip, setSkip] = useState<number>(0);
   const [hasMore,setHasMore] = useState(true)
 

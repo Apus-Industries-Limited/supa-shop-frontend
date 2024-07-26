@@ -69,7 +69,6 @@ export const BuyerProvider = (props: Props) => {
         phone_number: "",
         confirmpassword:""
       }) // Handle success
-      console.log(response.data)
       navigate(from,{replace:true})
     } catch (err:any) {
       if ( !err.response ) {
@@ -116,7 +115,6 @@ export const BuyerProvider = (props: Props) => {
         },withCredentials:true
     });
       toastMsg("success", 'Registration Successfully')
-      console.log(response.data)
       setFormData({ ...formData,
         name:"",
         username: '',
@@ -145,12 +143,11 @@ export const BuyerProvider = (props: Props) => {
         e.preventDefault();
         try {
           setLoading(true)
-            const response = await axios.post(`/auth/forgot-password`, formData,  {
+            await axios.post(`/auth/forgot-password`, formData,  {
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            });
-          console.log(response.data); // Handle success
+            });// Handle success
           toastMsg("success","Recovery link has been sent")
           navigate('login')
         } catch (error:any) {

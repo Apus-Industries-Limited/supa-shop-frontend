@@ -16,7 +16,7 @@ const BuyerLayout = () => {
   
   return (
     <BuyerProvider>
-      <main className="h-screen max-w-full font-mont font-semibold flex flex-col">
+      <main className="h-screen max-w-full font-mont flex flex-col">
         <Header />
         <div className="flex-grow overflow-y-auto" ref={divRef}>
           <ToastContainer />
