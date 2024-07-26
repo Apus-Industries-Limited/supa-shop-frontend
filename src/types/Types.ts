@@ -8,6 +8,12 @@ export interface Review{
       review: string
 }
 
+export interface Dimension{
+      height: string
+      width: string
+      length: string
+}
+
 export interface Password{
       oldPassword: string;
       newPassword: string;
@@ -46,9 +52,11 @@ export interface Product {
       quantity: string;
       isInStock: boolean;
       color: string[]
-      dimension: unknown;
+      dimension: Dimension | null;
       ratings: Ratings[];
-      reviews: Review[]
+      reviews: Review[];
+      weight: number | null
+      size: string[]
       isFeatured: boolean;
 }
 

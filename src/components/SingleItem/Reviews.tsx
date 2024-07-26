@@ -71,13 +71,19 @@ const Reviews = ({ review,rating }: Props) => {
                   <BsStar />
                 </div>
                   :
-            rating?.rating === 5 && <div className="flex space-x-3 items-center">
+            rating?.rating === 5 ? <div className="flex space-x-3 items-center">
                     <BsStarFill />
                     <BsStarFill />
                     <BsStarFill />
                     <BsStarFill />
                     <BsStarFill />
-            </div>
+            </div> : <div className="flex space-x-3 items-center">
+                      <BsStar />
+                      <BsStar />
+                      <BsStar />
+                      <BsStar />
+                      <BsStar />
+                  </div>
           }
         </div>
         <hr />
